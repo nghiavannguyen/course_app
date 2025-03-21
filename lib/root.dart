@@ -2,6 +2,7 @@ import 'package:course_app/module/account/screen/account_screen.dart';
 import 'package:course_app/module/home/screen/home_screen.dart';
 import 'package:course_app/module/my-learning/screen/my_learning_screen.dart';
 import 'package:course_app/module/search/screen/search_screen.dart';
+import 'package:course_app/module/wishlist/screen/wish_list_screen.dart';
 import 'package:flutter/material.dart';
 
 class RootApp extends StatefulWidget {
@@ -30,9 +31,7 @@ class _RootAppState extends State<RootApp> {
           HomeScreen(),
           SearchScreen(),
           MyLearningScreen(),
-          Container(
-            color: Colors.yellow,
-          ),
+          WishListScreen(),
           AccountScreen(),
         ],
       ),

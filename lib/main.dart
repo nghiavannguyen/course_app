@@ -39,7 +39,6 @@ class MyApp extends StatelessWidget {
           // supportedLocales: context.supportedLocales,
           // locale: context.locale,
           title: 'COURSE APP',
-          
           theme: AppThemes.lightTheme,
           darkTheme: AppThemes.darkTheme,
           themeMode: themeController.theme,
