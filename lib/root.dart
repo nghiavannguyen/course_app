@@ -1,3 +1,6 @@
+import 'package:course_app/module/home/screen/home_screen.dart';
+import 'package:course_app/module/my-learning/screen/my_learning_screen.dart';
+import 'package:course_app/module/search/screen/search_screen.dart';
 import 'package:flutter/material.dart';
 
 class RootApp extends StatefulWidget {
@@ -20,11 +23,19 @@ class _RootAppState extends State<RootApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text(
-          "Page ${_selectedIndex + 1}",
-          style: TextStyle(fontSize: 24),
-        ),
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: [
+          HomeScreen(),
+          SearchScreen(),
+          MyLearningScreen(),
+          Container(
+            color: Colors.yellow,
+          ),
+          Container(
+            color: Colors.purple,
+          ),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
