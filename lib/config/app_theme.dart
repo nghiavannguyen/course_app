@@ -5,9 +5,17 @@ class AppThemes {
     brightness: Brightness.light,
     primaryColor: Colors.blue,
     scaffoldBackgroundColor: Colors.white,
+    canvasColor: Colors.black.withOpacity(0.2),
     textTheme: AppTextStyles.lightTextTheme,
     package: 'sub_project',
     fontFamily: 'poppins',
+    chipTheme: ChipThemeData(
+      backgroundColor: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(24),
+        side: BorderSide(color: Colors.white),
+      ),
+    ),
     appBarTheme: AppBarTheme(
       backgroundColor: Colors.white,
       foregroundColor: Colors.black,
@@ -25,6 +33,16 @@ class AppThemes {
     primaryColor: Colors.purple,
     scaffoldBackgroundColor: Colors.black,
     textTheme: AppTextStyles.darkTextTheme,
+    canvasColor: Colors.white.withOpacity(0.2),
+    package: 'sub_project',
+    fontFamily: 'poppins',
+    chipTheme: ChipThemeData(
+      backgroundColor: Colors.black,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(24),
+        side: BorderSide(color: Colors.white),
+      ),
+    ),
     appBarTheme: AppBarTheme(
       backgroundColor: Colors.black,
       foregroundColor: Colors.white,
@@ -59,11 +77,11 @@ class AppTextStyles {
     titleSmall: TextStyle(
         fontSize: 14, fontWeight: FontWeight.w500, color: Colors.black),
     bodyLarge: TextStyle(
-        fontSize: 16, fontWeight: FontWeight.normal, color: Colors.black87),
+        fontSize: 16, fontWeight: FontWeight.normal, color: Colors.black),
     bodyMedium: TextStyle(
-        fontSize: 14, fontWeight: FontWeight.normal, color: Colors.black87),
+        fontSize: 14, fontWeight: FontWeight.normal, color: Colors.black),
     bodySmall: TextStyle(
-        fontSize: 12, fontWeight: FontWeight.normal, color: Colors.black87),
+        fontSize: 12, fontWeight: FontWeight.normal, color: Colors.black),
     labelLarge: TextStyle(
         fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
     labelMedium: TextStyle(
@@ -92,11 +110,11 @@ class AppTextStyles {
     titleSmall: TextStyle(
         fontSize: 14, fontWeight: FontWeight.w500, color: Colors.white),
     bodyLarge: TextStyle(
-        fontSize: 16, fontWeight: FontWeight.normal, color: Colors.white70),
+        fontSize: 16, fontWeight: FontWeight.normal, color: Colors.white),
     bodyMedium: TextStyle(
-        fontSize: 14, fontWeight: FontWeight.normal, color: Colors.white70),
+        fontSize: 14, fontWeight: FontWeight.normal, color: Colors.white),
     bodySmall: TextStyle(
-        fontSize: 12, fontWeight: FontWeight.normal, color: Colors.white70),
+        fontSize: 12, fontWeight: FontWeight.normal, color: Colors.white),
     labelLarge: TextStyle(
         fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white),
     labelMedium: TextStyle(

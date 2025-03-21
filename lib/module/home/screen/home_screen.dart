@@ -1,3 +1,6 @@
+import 'package:course_app/module/home/components/category_chip.dart';
+import 'package:course_app/module/home/components/course_card.dart';
+import 'package:course_app/module/home/components/section_title.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -6,7 +9,8 @@ class HomeScreen extends StatelessWidget {
   // ===== DUMMY DATA CHO DEMO =====
   final List<CourseModel> shortAndSweetCourses = const [
     CourseModel(
-      imageUrl: "https://dummyimage.com/300x180",
+      imageUrl:
+          'https://lh3.googleusercontent.com/-nMO5UrXH7Ag/YG6k5BMteZI/AAAAAAAAnAM/5FbE1FwrynIWcuWmyGtk0zPJ-dxiqS4zgCLcBGAsYHQ/w433-h244/image.png',
       title: "Scikit-learn in Python: 100+ Data Science Projects",
       author: "Pawel Krakowiak",
       rating: 4.7,
@@ -16,7 +20,30 @@ class HomeScreen extends StatelessWidget {
       isBestseller: true,
     ),
     CourseModel(
-      imageUrl: "https://dummyimage.com/300x180",
+      imageUrl:
+          "https://lh3.googleusercontent.com/-nMO5UrXH7Ag/YG6k5BMteZI/AAAAAAAAnAM/5FbE1FwrynIWcuWmyGtk0zPJ-dxiqS4zgCLcBGAsYHQ/w433-h244/image.png",
+      title: "Video Segmentation with Python using Deep Learning",
+      author: "Dr. Angela M & Al Co.",
+      rating: 4.6,
+      ratingCount: 66,
+      price: "₫249,000",
+      oldPrice: "₫499,000",
+      isBestseller: false,
+    ),
+    CourseModel(
+      imageUrl:
+          "https://lh3.googleusercontent.com/-nMO5UrXH7Ag/YG6k5BMteZI/AAAAAAAAnAM/5FbE1FwrynIWcuWmyGtk0zPJ-dxiqS4zgCLcBGAsYHQ/w433-h244/image.png",
+      title: "Video Segmentation with Python using Deep Learning",
+      author: "Dr. Angela M & Al Co.",
+      rating: 4.6,
+      ratingCount: 66,
+      price: "₫249,000",
+      oldPrice: "₫499,000",
+      isBestseller: false,
+    ),
+    CourseModel(
+      imageUrl:
+          "https://lh3.googleusercontent.com/-nMO5UrXH7Ag/YG6k5BMteZI/AAAAAAAAnAM/5FbE1FwrynIWcuWmyGtk0zPJ-dxiqS4zgCLcBGAsYHQ/w433-h244/image.png",
       title: "Video Segmentation with Python using Deep Learning",
       author: "Dr. Angela M & Al Co.",
       rating: 4.6,
@@ -29,7 +56,7 @@ class HomeScreen extends StatelessWidget {
 
   final List<CourseModel> learnersAreViewing = const [
     CourseModel(
-      imageUrl: "https://dummyimage.com/300x180",
+      imageUrl: 'https://i.ytimg.com/vi/pDmSX2rBrww/maxresdefault.jpg',
       title: "100 Days of Code: The Complete Python Pro Bootcamp",
       author: "Dr. Angela Yu, Developer and ...",
       rating: 4.7,
@@ -39,7 +66,7 @@ class HomeScreen extends StatelessWidget {
       isBestseller: true,
     ),
     CourseModel(
-      imageUrl: "https://dummyimage.com/300x180",
+      imageUrl: 'https://i.ytimg.com/vi/pDmSX2rBrww/maxresdefault.jpg',
       title: "The Complete Full-Stack Web Development Bootcamp",
       author: "Dr. Angela Yu, Developer and ...",
       rating: 4.7,
@@ -48,6 +75,26 @@ class HomeScreen extends StatelessWidget {
       oldPrice: "₫1,499,000",
       isBestseller: true,
     ),
+    CourseModel(
+      imageUrl: 'https://i.ytimg.com/vi/pDmSX2rBrww/maxresdefault.jpg',
+      title: "The Complete Full-Stack Web Development Bootcamp",
+      author: "Dr. Angela Yu, Developer and ...",
+      rating: 4.7,
+      ratingCount: 425628,
+      price: "₫249,000",
+      oldPrice: "₫1,499,000",
+      isBestseller: true,
+    ),
+    CourseModel(
+      imageUrl: 'https://i.ytimg.com/vi/pDmSX2rBrww/maxresdefault.jpg',
+      title: "The Complete Full-Stack Web Development Bootcamp",
+      author: "Dr. Angela Yu, Developer and ...",
+      rating: 4.7,
+      ratingCount: 425628,
+      price: "₫249,000",
+      oldPrice: "₫1,499,000",
+      isBestseller: true,
+    )
   ];
 
   final List<String> categories = const [
@@ -104,6 +151,7 @@ class HomeScreen extends StatelessWidget {
               SectionTitle(
                 title: "Learners are viewing",
                 textTheme: textTheme,
+                // onTap: () {},
               ),
               SizedBox(
                 height: 300,
@@ -130,12 +178,15 @@ class HomeScreen extends StatelessWidget {
               SectionTitle(
                 title: "Categories",
                 textTheme: textTheme,
+                onTap: () {
+                  //see all on tap here
+                },
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Wrap(
                   spacing: 8,
-                  runSpacing: 8,
+                  runSpacing: 4,
                   children: categories
                       .map((cat) => CategoryChip(
                             label: cat,
@@ -157,7 +208,7 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      "Top companies trust Udemy",
+                      "Top companies trust Abu Education",
                       style: textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -176,8 +227,8 @@ class HomeScreen extends StatelessWidget {
                     const SizedBox(height: 16),
                     // CTA
                     Text(
-                      "Try Udemy Business",
-                      style: textTheme.bodyLarge?.copyWith(
+                      "Try Abu Education Business",
+                      style: textTheme.bodySmall?.copyWith(
                         // Tùy chỉnh màu tím theo primaryColor hay khác
                         color: Colors.purple,
                         fontWeight: FontWeight.bold,
@@ -191,175 +242,6 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-// ===================================================================
-// WIDGET: SectionTitle
-// ===================================================================
-class SectionTitle extends StatelessWidget {
-  final String title;
-  final TextTheme textTheme;
-
-  const SectionTitle({
-    super.key,
-    required this.title,
-    required this.textTheme,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      child: Text(
-        title,
-        style: textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
-      ),
-    );
-  }
-}
-
-// ===================================================================
-// WIDGET: CategoryChip
-// ===================================================================
-class CategoryChip extends StatelessWidget {
-  final String label;
-  final TextTheme textTheme;
-  final Brightness brightness;
-
-  const CategoryChip({
-    super.key,
-    required this.label,
-    required this.textTheme,
-    required this.brightness,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    // Chọn màu nền cho chip dựa trên light/dark
-    final bgColor =
-        brightness == Brightness.dark ? Colors.grey[800] : Colors.grey[300];
-
-    return Chip(
-      label: Text(label, style: textTheme.bodyMedium),
-      backgroundColor: bgColor,
-    );
-  }
-}
-
-// ===================================================================
-// WIDGET: CourseCard
-// ===================================================================
-class CourseCard extends StatelessWidget {
-  final CourseModel course;
-  final TextTheme textTheme;
-
-  const CourseCard({
-    super.key,
-    required this.course,
-    required this.textTheme,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 200, // Độ rộng cố định cho card
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Ảnh khóa học
-          AspectRatio(
-            aspectRatio: 16 / 9,
-            child: Image.network(
-              course.imageUrl,
-              fit: BoxFit.cover,
-            ),
-          ),
-          const SizedBox(height: 8),
-
-          // Tên khóa học
-          Text(
-            course.title,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: textTheme.bodyLarge?.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 4),
-
-          // Tác giả
-          Text(
-            course.author,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: textTheme.bodyMedium,
-          ),
-          const SizedBox(height: 4),
-
-          // Rating & ratingCount
-          Row(
-            children: [
-              Text(
-                course.rating.toStringAsFixed(1),
-                style: textTheme.bodyMedium?.copyWith(
-                  color: Colors.amber,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(width: 4),
-              const Icon(Icons.star, color: Colors.amber, size: 14),
-              const SizedBox(width: 4),
-              Text(
-                "(${course.ratingCount})",
-                style: textTheme.bodyMedium,
-              ),
-            ],
-          ),
-          const SizedBox(height: 4),
-
-          // Giá & Giá gạch
-          Row(
-            children: [
-              Text(
-                course.price,
-                style: textTheme.bodyLarge?.copyWith(
-                  // Chọn màu cho giá
-                  color: Colors.yellow[600],
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(width: 6),
-              Text(
-                course.oldPrice,
-                style: textTheme.bodyMedium?.copyWith(
-                  decoration: TextDecoration.lineThrough,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 4),
-
-          // Bestseller
-          if (course.isBestseller)
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-              decoration: BoxDecoration(
-                color: Colors.greenAccent,
-                borderRadius: BorderRadius.circular(4),
-              ),
-              child: Text(
-                "Bestseller",
-                style: textTheme.bodySmall?.copyWith(
-                  // Để nổi bật, đặt text đen trên nền xanh
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-        ],
       ),
     );
   }

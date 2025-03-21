@@ -1,3 +1,4 @@
+import 'package:course_app/module/account/screen/account_screen.dart';
 import 'package:course_app/module/home/screen/home_screen.dart';
 import 'package:course_app/module/my-learning/screen/my_learning_screen.dart';
 import 'package:course_app/module/search/screen/search_screen.dart';
@@ -32,9 +33,7 @@ class _RootAppState extends State<RootApp> {
           Container(
             color: Colors.yellow,
           ),
-          Container(
-            color: Colors.purple,
-          ),
+          AccountScreen(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

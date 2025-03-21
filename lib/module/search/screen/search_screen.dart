@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:course_app/module/widgets/search_widget.dart';
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -45,56 +48,19 @@ class SearchScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // ===== Thanh tìm kiếm =====
-              TextField(
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Theme.of(context).textTheme.bodyMedium?.color,
-                    ),
-                decoration: InputDecoration(
-                  hintText: "Tìm kiếm",
-                  hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Theme.of(context)
-                            .textTheme
-                            .bodyMedium
-                            ?.color
-                            ?.withOpacity(0.5),
-                      ),
-                  prefixIcon: Icon(
-                    Icons.search,
-                    color: Theme.of(context).iconTheme.color,
-                  ),
-                  filled: true,
-                  fillColor: Theme.of(context).canvasColor.withOpacity(0.1),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(
-                      color: Theme.of(context).dividerColor,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(
-                      color: Theme.of(context).dividerColor,
-                    ),
-                  ),
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 12,
-                  ),
-                ),
-              ),
+              SearchWidget(),
               const SizedBox(height: 16),
-
               // ===== Dòng các Tag =====
               Wrap(
                 spacing: 8,
-                runSpacing: 8,
+                runSpacing: 0,
                 children: tags
                     .map(
                       (tag) => Chip(
-                        label: Text(
-                          tag,
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
+                        visualDensity: VisualDensity.compact,
+                        labelPadding: EdgeInsets.zero,
+                        label: Text(tag,
+                            style: Theme.of(context).textTheme.bodySmall),
                         // backgroundColor tùy theo theme
                         backgroundColor:
                             Theme.of(context).chipTheme.backgroundColor ??
