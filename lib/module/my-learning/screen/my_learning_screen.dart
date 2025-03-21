@@ -63,6 +63,7 @@ class MyLearningScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("My learning"),
         centerTitle: true,
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
@@ -95,14 +96,16 @@ class MyLearningScreen extends StatelessWidget {
             // Tiêu đề (tên khoá học)
             title: Text(
               item.title,
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
             ),
             // Tác giả
             subtitle: Text(
               item.author,
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(context).textTheme.bodySmall,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
