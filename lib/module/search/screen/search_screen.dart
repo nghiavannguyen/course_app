@@ -69,16 +69,17 @@ class SearchScreen extends StatelessWidget {
                     )
                     .toList(),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 8),
 
               // ===== Danh sách danh mục =====
               Column(
                 children: categories
                     .map(
                       (cat) => ListTile(
+                        contentPadding: EdgeInsets.zero,
                         title: Text(
                           cat,
-                          style: Theme.of(context).textTheme.bodyLarge,
+                          style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         trailing: Icon(
                           Icons.chevron_right,
