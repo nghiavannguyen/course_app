@@ -5,7 +5,7 @@ class DioClient {
   DioClient() {
     dio = Dio(
       BaseOptions(
-          baseUrl: 'https://jsonplaceholder.typicode.com',
+          baseUrl: 'http://172.24.224.1:3001/api/v1',
           connectTimeout: Duration(seconds: 20),
           receiveTimeout: Duration(seconds: 20),
           headers: {'Content-Type': 'application/json'}),
