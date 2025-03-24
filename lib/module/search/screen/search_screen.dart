@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:course_app/module/suggestion-search/suggestion_search_screen.dart';
 import 'package:course_app/module/widgets/search_widget.dart';
 import 'package:flutter/material.dart';
 

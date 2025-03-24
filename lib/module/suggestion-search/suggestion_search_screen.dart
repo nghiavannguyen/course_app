@@ -21,21 +21,44 @@ class _SearchScreenState extends State<SuggestionSearchScreen> {
       appBar: AppBar(
         backgroundColor: theme.colorScheme.surface,
         automaticallyImplyLeading: false,
-        title: TextField(
-          controller: _searchController,
-          style:
-              textTheme.bodyLarge?.copyWith(color: theme.colorScheme.onSurface),
-          decoration: InputDecoration(
-            hintText: 'Tìm kiếm',
-            hintStyle: textTheme.bodyLarge
-                ?.copyWith(color: theme.colorScheme.onSurfaceVariant),
-            prefixIcon:
-                Icon(Icons.search, color: theme.colorScheme.onSurfaceVariant),
-            filled: true,
-            fillColor: theme.colorScheme.surface,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide.none,
+        title: SizedBox(
+          height: 35,
+          child: IgnorePointer(
+            child: TextField(
+              controller: _searchController,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: Theme.of(context).textTheme.bodyMedium?.color,
+                  ),
+              decoration: InputDecoration(
+                hintText: "Tìm kiếm",
+                hintStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Theme.of(context).textTheme.bodySmall?.color),
+                prefixIcon: Icon(
+                  Icons.search,
+                  size: 18,
+                  color: Theme.of(context).iconTheme.color?.withOpacity(0.5),
+                ),
+                prefixIconConstraints: BoxConstraints(
+                  minWidth: 30,
+                ),
+                filled: true,
+                fillColor: Theme.of(context).canvasColor.withOpacity(0.2),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  // borderSide: BorderSide(
+                  //   color: Theme.of(context).dividerColor,
+                  // ),
+                ),
+                contentPadding: const EdgeInsets.symmetric(
+                  vertical: 2,
+                ),
+              ),
             ),
           ),
         ),

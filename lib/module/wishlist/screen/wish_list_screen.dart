@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sub_project/common/widget/appbar/common_appbar.dart';
 
 class WishListScreen extends StatelessWidget {
   const WishListScreen({super.key});
@@ -42,11 +43,10 @@ class WishListScreen extends StatelessWidget {
     ];
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
-      appBar: AppBar(
-        backgroundColor: theme.colorScheme.surface,
-        title: Text('Mong muốn',
-            style: textTheme.titleLarge
-                ?.copyWith(color: theme.colorScheme.onSurface)),
+      appBar: CommonAppBar(
+        title: 'Wish List',
+        centerTitle: true,
+        isShowLeading: false,
       ),
       body: ListView.builder(
         padding: EdgeInsets.all(16),
