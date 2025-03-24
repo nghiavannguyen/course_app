@@ -5,7 +5,7 @@ class AppThemes {
     brightness: Brightness.light,
     primaryColor: Colors.blue,
     scaffoldBackgroundColor: Colors.white,
-    canvasColor: Colors.black.withOpacity(0.2),
+    canvasColor: Colors.black.withOpacity(0.1),
     textTheme: AppTextStyles.lightTextTheme,
     package: 'sub_project',
     fontFamily: 'poppins',
