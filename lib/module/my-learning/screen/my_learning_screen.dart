@@ -1,4 +1,6 @@
+import 'package:course_app/navigation/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MyLearningScreen extends StatelessWidget {
   const MyLearningScreen({super.key});
@@ -119,6 +121,7 @@ class MyLearningScreen extends StatelessWidget {
             ),
             onTap: () {
               // TODO: Xử lý khi chọn khoá học
+              Get.toNamed("${Routes.detailCourse}/0123");
             },
           );
         },

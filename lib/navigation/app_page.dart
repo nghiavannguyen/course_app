@@ -1,3 +1,5 @@
+import 'package:course_app/module/course/binding/detail_course_binding.dart';
+import 'package:course_app/module/course/screen/detail_course_screen.dart';
 import 'package:course_app/navigation/routes.dart';
 import 'package:course_app/module/auth/screen/login_screen.dart';
 import 'package:course_app/module/course/binding/course_binding.dart';
@@ -18,8 +20,12 @@ class AppPage {
       page: () => const SearchScreen(),
     ),
     GetPage(
-        name: Routes.course+ '/:id',
+        name: '${Routes.course}/:id',
         page: () => const CourseScreen(),
         binding: CourseBinding()),
+    GetPage(
+        name: "${Routes.detailCourse}/:id",
+        page: () => DetailCourseScreen(),
+        binding: DetailCourseBinding())
   ];
 }
