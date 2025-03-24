@@ -5,10 +5,10 @@ final List<String> whatYouWillLearn = [
   "Build fullstack React apps with NextJS 14+",
 ];
 final List<String> curriculum = [
-  "Welcome To The Course! (Video - 1:00)",
-  "What is ReactJS? And Why Would You Use It? (Video - 2:58)",
-  "ReactJS vs 'Vanilla JavaScript': Why Use React? (Video - 3:42)",
-  "Editing Our First React App (Video - 4:22)",
+  "Welcome To The Course!",
+  "What is ReactJS? And Why Would You Use It?",
+  "ReactJS vs 'Vanilla JavaScript': Why Use React?",
+  "Editing Our First React App",
 ];
 final List<String> courseIncludes = [
   "34 hours, 45 minutes on-demand video",

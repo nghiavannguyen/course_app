@@ -40,7 +40,6 @@ class CourseScreen extends StatelessWidget {
         ],
       ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      bottomNavigationBar: _buildBottomBuySection(context),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,9 +69,8 @@ class CourseScreen extends StatelessWidget {
             // ===== SECTION 8: STUDENT FEEDBACK =====
             _buildStudentFeedbackSection(context),
             // ===== SECTION 9: BUY AGAIN AT BOTTOM =====
+            _buildBottomBuySection(context),
             const SizedBox(height: 16),
-            // _buildBottomBuySection(context),
-            // const SizedBox(height: 16),
           ],
         ),
       ),
@@ -182,65 +180,58 @@ class CourseScreen extends StatelessWidget {
   Widget _buildPriceSection(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).canvasColor,
-          borderRadius: BorderRadius.circular(DiMens.cardRadius8),
-        ),
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Giá
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  coursePrice,
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  courseOldPrice,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        decoration: TextDecoration.lineThrough,
-                      ),
-                ),
-              ],
-            ),
-            // Giảm giá
-            const SizedBox(height: 4),
-            Text(
-              discountText,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold,
-                  ),
-            ),
-            const SizedBox(height: 8),
-            // Nút "Buy now"
-            ButtonWidget(
-              text: "Buy now",
-              onPressed: () {},
-            ),
-            const SizedBox(height: 8),
-            // Nút "Add to wishlist"
-            ButtonWidget(
-              text: "Add to wishlist",
-              backgroundColor: Colors.transparent,
-              shape: RoundedRectangleBorder(
-                side: BorderSide(
-                  color: Theme.of(context).primaryColor,
-                  width: 1,
-                ),
-                borderRadius: BorderRadius.circular(48),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Giá
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                coursePrice,
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
-              onPressed: () {},
+              const SizedBox(width: 8),
+              Text(
+                courseOldPrice,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      decoration: TextDecoration.lineThrough,
+                    ),
+              ),
+            ],
+          ),
+          // Giảm giá
+          const SizedBox(height: 4),
+          Text(
+            discountText,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: Colors.red,
+                  fontWeight: FontWeight.bold,
+                ),
+          ),
+          const SizedBox(height: 8),
+          // Nút "Buy now"
+          ButtonWidget(
+            text: "Buy now",
+            onPressed: () {},
+          ),
+          const SizedBox(height: 8),
+          // Nút "Add to wishlist"
+          ButtonWidget(
+            text: "Add to wishlist",
+            backgroundColor: Colors.transparent,
+            shape: RoundedRectangleBorder(
+              side: BorderSide(
+                color: Theme.of(context).primaryColor,
+                width: 1,
+              ),
+              borderRadius: BorderRadius.circular(48),
             ),
-          ],
-        ),
+            onPressed: () {},
+          ),
+        ],
       ),
     );
   }
@@ -309,11 +300,11 @@ class CourseScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).canvasColor,
-          borderRadius: BorderRadius.circular(DiMens.cardRadius8),
-        ),
-        padding: const EdgeInsets.all(16),
+        // decoration: BoxDecoration(
+        //     // color: Theme.of(context).canvasColor,
+        //     // borderRadius: BorderRadius.circular(DiMens.cardRadius8),
+        //     ),
+        // padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -329,26 +320,53 @@ class CourseScreen extends StatelessWidget {
               style: Theme.of(context).textTheme.bodySmall,
             ),
             const SizedBox(height: 8),
-            Text(
-              "Section 1 - Getting Started",
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Section 1 - Getting Started",
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(),
+                ),
+                Text(
+                  "-",
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                )
+              ],
             ),
             const SizedBox(height: 8),
-            ...curriculum.map(
-              (lecture) => Padding(
+            ...List.generate(
+              curriculum.length,
+              (index) => Padding(
                 padding: const EdgeInsets.only(bottom: 6),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Icon(Icons.play_circle_fill, size: 16),
-                    const SizedBox(width: 8),
+                    Text(
+                      "${index + 1}",
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    const SizedBox(width: 16),
                     Expanded(
-                      child: Text(
-                        lecture,
-                        style: Theme.of(context).textTheme.bodyMedium,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            curriculum[index],
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                          Text(
+                            "Video 21:07",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ],
                       ),
                     ),
+                    SizedBox(
+                      width: 8,
+                    ),
+                    const Icon(Icons.play_circle_fill, size: 16),
                   ],
                 ),
               ),
@@ -377,42 +395,35 @@ class CourseScreen extends StatelessWidget {
   Widget _buildCourseIncludesSection(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).canvasColor,
-          borderRadius: BorderRadius.circular(DiMens.cardRadius8),
-        ),
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "This course includes",
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-            ),
-            const SizedBox(height: 8),
-            ...courseIncludes.map(
-              (item) => Padding(
-                padding: const EdgeInsets.only(bottom: 6),
-                child: Row(
-                  children: [
-                    // Mô phỏng icon
-                    const Icon(Icons.check_circle_outline, size: 18),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Text(
-                        item,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ),
-                  ],
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "This course includes",
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
                 ),
+          ),
+          const SizedBox(height: 8),
+          ...courseIncludes.map(
+            (item) => Padding(
+              padding: const EdgeInsets.only(bottom: 6),
+              child: Row(
+                children: [
+                  // Mô phỏng icon
+                  const Icon(Icons.check_circle_outline, size: 18),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      item,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -423,46 +434,39 @@ class CourseScreen extends StatelessWidget {
   Widget _buildRequirementsSection(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).canvasColor,
-          borderRadius: BorderRadius.circular(DiMens.cardRadius8),
-        ),
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Requirements",
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-            ),
-            const SizedBox(height: 8),
-            ...requirements.map(
-              (item) => Padding(
-                padding: const EdgeInsets.only(bottom: 6),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text("• "),
-                    Expanded(
-                      child: Text(
-                        item,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ),
-                  ],
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Requirements",
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
                 ),
+          ),
+          const SizedBox(height: 8),
+          ...requirements.map(
+            (item) => Padding(
+              padding: const EdgeInsets.only(bottom: 6),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("• "),
+                  Expanded(
+                    child: Text(
+                      item,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  ),
+                ],
               ),
             ),
-            const SizedBox(height: 8),
-            Text(
-              "This bestselling course by the author of \"React Key Concepts\" has turned more students into ...",
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-          ],
-        ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            "This bestselling course by the author of \"React Key Concepts\" has turned more students into ...",
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+        ],
       ),
     );
   }
@@ -473,124 +477,113 @@ class CourseScreen extends StatelessWidget {
   Widget _buildInstructorsSection(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).canvasColor,
-          borderRadius: BorderRadius.circular(DiMens.cardRadius8),
-        ),
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Instructors",
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-            ),
-            const SizedBox(height: 16),
-            ...instructors.map((inst) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Tên + avatar
-                    Row(
-                      children: [
-                        CircleAvatar(
-                          radius: 24,
-                          backgroundImage:
-                              NetworkImage(inst.avatarUrl), // dummy if needed
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                inst.name,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyLarge
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                              Text(
-                                inst.title,
-                                style: Theme.of(context).textTheme.bodyMedium,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    // Rating, reviews, students, courses
-                    Text(
-                      "${inst.rating} Instructor rating | ${_formatNumber(inst.reviewsCount)} Reviews | "
-                      "${_formatNumber(inst.studentsCount)} Students | ${inst.coursesCount} Courses",
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: Theme.of(context)
-                                .textTheme
-                                .bodySmall
-                                ?.color
-                                ?.withOpacity(0.7),
-                          ),
-                    ),
-                    const SizedBox(height: 8),
-                    // Mô tả
-                    Text(
-                      inst.description,
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                    const SizedBox(height: 8),
-                    // "Show more", "View profile"
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            // TODO: show more
-                          },
-                          child: Text(
-                            "Show more",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(
-                                  color: Theme.of(context).primaryColor,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                        ElevatedButton(
-                          onPressed: () {
-                            // TODO: view profile
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Theme.of(context).canvasColor,
-                          ),
-                          child: Text(
-                            "View profile",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Instructors",
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
                 ),
-              );
-            }),
-          ],
-        ),
+          ),
+          const SizedBox(height: 16),
+          ...instructors.map((inst) {
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 24),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Tên + avatar
+                  Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 24,
+                        backgroundImage:
+                            NetworkImage(inst.avatarUrl), // dummy if needed
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              inst.name,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge
+                                  ?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                            Text(
+                              inst.title,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  // Rating, reviews, students, courses
+                  Text(
+                    "${inst.rating} Instructor rating | ${_formatNumber(inst.reviewsCount)} Reviews | "
+                    "${_formatNumber(inst.studentsCount)} Students | ${inst.coursesCount} Courses",
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Theme.of(context)
+                              .textTheme
+                              .bodySmall
+                              ?.color
+                              ?.withOpacity(0.7),
+                        ),
+                  ),
+                  const SizedBox(height: 8),
+                  // Mô tả
+                  Text(
+                    inst.description,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  const SizedBox(height: 8),
+                  // "Show more", "View profile"
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          // TODO: show more
+                        },
+                        child: Text(
+                          "Show more",
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: Theme.of(context).primaryColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      ElevatedButton(
+                        onPressed: () {
+                          // TODO: view profile
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Theme.of(context).canvasColor,
+                        ),
+                        child: Text(
+                          "View profile",
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            );
+          }),
+        ],
       ),
     );
   }
