@@ -1,12 +1,16 @@
-import 'package:course_app/config/app_page.dart';
-import 'package:course_app/config/routes.dart';
+import 'package:course_app/core/di/service_locator.dart';
+import 'package:course_app/navigation/app_page.dart';
+import 'package:course_app/navigation/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'config/app_theme.dart';
+import 'core/config/app_theme.dart';
 import 'module/theme/controller/theme_controller.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  setupLocator();
+
   runApp(const MyApp());
 }
 
@@ -39,7 +43,7 @@ class MyApp extends StatelessWidget {
           // supportedLocales: context.supportedLocales,
           // locale: context.locale,
           title: 'COURSE APP',
-          
+
           theme: AppThemes.lightTheme,
           darkTheme: AppThemes.darkTheme,
           themeMode: themeController.theme,

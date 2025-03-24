@@ -1,7 +1,9 @@
+import 'package:course_app/navigation/routes.dart';
 import 'package:course_app/module/home/components/category_chip.dart';
 import 'package:course_app/module/home/components/course_card.dart';
 import 'package:course_app/module/home/components/section_title.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -138,9 +140,14 @@ class HomeScreen extends StatelessWidget {
                         right:
                             index == shortAndSweetCourses.length - 1 ? 16 : 8,
                       ),
-                      child: CourseCard(
-                        course: course,
-                        textTheme: textTheme,
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.toNamed('${Routes.course}/$index');
+                        },
+                        child: CourseCard(
+                          course: course,
+                          textTheme: textTheme,
+                        ),
                       ),
                     );
                   },

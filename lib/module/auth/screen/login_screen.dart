@@ -1,7 +1,6 @@
-import 'package:course_app/config/routes.dart';
+import 'package:course_app/navigation/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sub_project/common/widget/image_network/common_image.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -130,13 +129,13 @@ class LoginScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _buildLoginOption(
-                          'assets/images/google-icon.png',
+                          'assets/icons/google-icon.png',
                           () {},
                           theme,
                         ),
                         const SizedBox(width: 24),
                         _buildLoginOption(
-                          'assets/images/apple-icon.png',
+                          'assets/icons/apple-icon.png',
                           () {},
                           theme,
                           color: theme.textTheme.bodyLarge?.color,
