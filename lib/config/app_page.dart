@@ -1,9 +1,12 @@
 import 'package:course_app/config/routes.dart';
 import 'package:course_app/module/auth/screen/login_screen.dart';
+import 'package:course_app/module/search/binding/suggestion_search_binding.dart';
 import 'package:course_app/module/search/screen/search_screen.dart';
-import 'package:course_app/module/suggestion-search/suggestion_search_screen.dart';
+import 'package:course_app/module/search/screen/suggestion_search_screen.dart';
 import 'package:course_app/root.dart';
 import 'package:get/get.dart';
+
+import '../module/search/screen/result_search_screen.dart';
 
 class AppPage {
   static List<GetPage> pages = [
@@ -19,6 +22,11 @@ class AppPage {
     GetPage(
       name: Routes.suggestionSearch,
       page: () => const SuggestionSearchScreen(),
+      binding: SuggestionSearchBinding(),
+    ),
+    GetPage(
+      name: Routes.resultSearch,
+      page: () => const ResultSearchScreen(),
     ),
   ];
 }

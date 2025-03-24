@@ -1,4 +1,6 @@
+import 'package:course_app/module/search/controller/suggestion_search_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SuggestionSearchScreen extends StatefulWidget {
   const SuggestionSearchScreen({super.key});
@@ -9,7 +11,8 @@ class SuggestionSearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SuggestionSearchScreen> {
   final TextEditingController _searchController = TextEditingController();
-  final List<String> _searchHistory = ['Fff', 'abets', 'Abfth', 'Àh'];
+  final SuggestionSearchController resultSearchController =
+      Get.find<SuggestionSearchController>();
 
   @override
   Widget build(BuildContext context) {
@@ -74,22 +77,29 @@ class _SearchScreenState extends State<SuggestionSearchScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: ListView.builder(
-          itemCount: _searchHistory.length,
+          itemCount: resultSearchController.searchHistory.length,
           itemBuilder: (context, index) {
-            return ListTile(
-              leading: Icon(Icons.history,
-                  color: theme.colorScheme.onSurfaceVariant),
-              title: Text(_searchHistory[index],
-                  style: textTheme.bodyLarge
-                      ?.copyWith(color: theme.colorScheme.onSurface)),
-              trailing: IconButton(
-                icon: Icon(Icons.close,
+            return InkWell(
+              onTap: () {
+                resultSearchController
+                    .onSearch(resultSearchController.searchHistory[index]);
+              },
+              child: ListTile(
+                leading: Icon(Icons.history,
                     color: theme.colorScheme.onSurfaceVariant),
-                onPressed: () {
-                  setState(() {
-                    _searchHistory.removeAt(index);
-                  });
-                },
+                title: Text(resultSearchController.searchHistory[index],
+                    style: textTheme.bodyLarge
+                        ?.copyWith(color: theme.colorScheme.onSurface)),
+                trailing: IconButton(
+                  icon: Icon(Icons.close,
+                      color: theme.colorScheme.onSurfaceVariant),
+                  onPressed: () {
+                    setState(() {
+                      resultSearchController.removeHistoryItem(
+                          resultSearchController.searchHistory[index]);
+                    });
+                  },
+                ),
               ),
             );
           },
