@@ -106,8 +106,6 @@ class LoginScreen extends StatelessWidget {
                           "username": "ad@gmail.com",
                           "password": "nghia1"
                         });
-                    print(res.statusCode);
-                    print(res.statusMessage);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: theme.primaryColor,

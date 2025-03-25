@@ -1,6 +1,7 @@
-import 'package:course_app/config/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../navigation/routes.dart';
 
 class SuggestionSearchController extends GetxController {
   final TextEditingController searchTextController = TextEditingController();

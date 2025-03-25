@@ -1,4 +1,4 @@
-import 'package:course_app/config/routes.dart';
+import 'package:course_app/navigation/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
