@@ -1,4 +1,3 @@
-import 'package:course_app/module/search/screen/suggestion_search_screen.dart';
 import 'package:course_app/module/widgets/search_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -58,12 +57,10 @@ class SearchScreen extends StatelessWidget {
                       (tag) => Chip(
                         visualDensity: VisualDensity.compact,
                         labelPadding: EdgeInsets.zero,
-                        label: Text(tag,
-                            style: Theme.of(context).textTheme.bodySmall),
+                        label: Text(tag, style: Theme.of(context).textTheme.bodySmall),
                         // backgroundColor tùy theo theme
-                        backgroundColor:
-                            Theme.of(context).chipTheme.backgroundColor ??
-                                Theme.of(context).canvasColor,
+                        backgroundColor: Theme.of(context).chipTheme.backgroundColor ??
+                            Theme.of(context).canvasColor,
                       ),
                     )
                     .toList(),
