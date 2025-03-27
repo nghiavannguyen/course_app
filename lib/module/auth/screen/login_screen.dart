@@ -100,7 +100,7 @@ class LoginScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () async {
-                    // Get.toNamed(Routes.root);
+                    Get.toNamed(Routes.root);
                     final res = await sl<DioClient>().dio.post('/auth/login',
                         data: {
                           "username": "ad@gmail.com",
