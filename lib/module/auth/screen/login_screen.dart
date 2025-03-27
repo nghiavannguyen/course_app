@@ -91,11 +91,11 @@ class LoginScreen extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () async {
                     Get.toNamed(Routes.root);
-                    // final res = await sl<DioClient>().dio.post('/auth/login',
-                    //     data: {
-                    //       "username": "ad@gmail.com",
-                    //       "password": "nghia1"
-                    //     });
+                    final res = await sl<DioClient>().dio.post('/auth/login',
+                        data: {
+                          "username": "ad@gmail.com",
+                          "password": "nghia1"
+                        });
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: theme.primaryColor,

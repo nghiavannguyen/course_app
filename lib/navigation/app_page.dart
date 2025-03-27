@@ -1,5 +1,8 @@
 import 'package:course_app/module/course/binding/detail_course_binding.dart';
 import 'package:course_app/module/course/screen/detail_course_screen.dart';
+import 'package:course_app/module/search/binding/suggestion_search_binding.dart';
+import 'package:course_app/module/search/screen/result_search_screen.dart';
+import 'package:course_app/module/search/screen/suggestion_search_screen.dart';
 import 'package:course_app/navigation/routes.dart';
 import 'package:course_app/module/auth/screen/login_screen.dart';
 import 'package:course_app/module/course/binding/course_binding.dart';
@@ -18,6 +21,15 @@ class AppPage {
     GetPage(
       name: Routes.search,
       page: () => const SearchScreen(),
+    ),
+    GetPage(
+      name: Routes.suggestionSearch,
+      page: () => const SuggestionSearchScreen(),
+      binding: SuggestionSearchBinding(),
+    ),
+    GetPage(
+      name: Routes.resultSearch,
+      page: () => const ResultSearchScreen(),
     ),
     GetPage(
         name: '${Routes.course}/:id',
