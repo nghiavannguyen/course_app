@@ -1,3 +1,5 @@
+import 'package:course_app/core/di/service_locator.dart';
+import 'package:course_app/core/network/dio_client.dart';
 import 'package:course_app/navigation/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -92,10 +94,7 @@ class LoginScreen extends StatelessWidget {
                   onPressed: () async {
                     Get.toNamed(Routes.root);
                     final res = await sl<DioClient>().dio.post('/auth/login',
-                        data: {
-                          "username": "ad@gmail.com",
-                          "password": "nghia1"
-                        });
+                        data: {"username": "ad@gmail.com", "password": "nghia1"});
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: theme.primaryColor,
