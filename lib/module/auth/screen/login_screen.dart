@@ -1,5 +1,3 @@
-import 'package:course_app/core/di/service_locator.dart';
-import 'package:course_app/core/network/dio_client.dart';
 import 'package:course_app/navigation/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,8 +20,7 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 16),
               // Close button
               IconButton(
-                icon: Icon(Icons.close,
-                    color: theme.textTheme.headlineMedium?.color, size: 32),
+                icon: Icon(Icons.close, color: theme.textTheme.headlineMedium?.color, size: 32),
                 onPressed: () {},
                 padding: EdgeInsets.zero,
                 constraints: const BoxConstraints(),
@@ -39,25 +36,20 @@ class LoginScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          _buildIcon(
-                              Icons.web, BorderRadius.circular(8), theme),
+                          _buildIcon(Icons.web, BorderRadius.circular(8), theme),
                           const SizedBox(width: 48),
-                          _buildIcon(Icons.email_outlined,
-                              BorderRadius.circular(8), theme),
+                          _buildIcon(Icons.email_outlined, BorderRadius.circular(8), theme),
                         ],
                       ),
                       const SizedBox(height: 24),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          _buildIcon(
-                              Icons.code, BorderRadius.circular(50), theme),
+                          _buildIcon(Icons.code, BorderRadius.circular(50), theme),
                           const SizedBox(width: 48),
-                          _buildIcon(Icons.camera_alt_outlined,
-                              BorderRadius.zero, theme),
+                          _buildIcon(Icons.camera_alt_outlined, BorderRadius.zero, theme),
                           const SizedBox(width: 48),
-                          _buildIcon(
-                              Icons.language, BorderRadius.circular(50), theme),
+                          _buildIcon(Icons.language, BorderRadius.circular(50), theme),
                         ],
                       ),
                     ],
@@ -86,9 +78,7 @@ class LoginScreen extends StatelessWidget {
                     borderSide: BorderSide(color: Colors.grey),
                   ),
                   focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                        color:
-                            theme.textTheme.bodyLarge?.color ?? Colors.white),
+                    borderSide: BorderSide(color: theme.textTheme.bodyLarge?.color ?? Colors.white),
                   ),
                 ),
               ),
@@ -100,12 +90,12 @@ class LoginScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () async {
-                    // Get.toNamed(Routes.root);
-                    final res = await sl<DioClient>().dio.post('/auth/login',
-                        data: {
-                          "username": "ad@gmail.com",
-                          "password": "nghia1"
-                        });
+                    Get.toNamed(Routes.root);
+                    // final res = await sl<DioClient>().dio.post('/auth/login',
+                    //     data: {
+                    //       "username": "ad@gmail.com",
+                    //       "password": "nghia1"
+                    //     });
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: theme.primaryColor,
@@ -207,9 +197,7 @@ class LoginScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: theme.scaffoldBackgroundColor,
         borderRadius: borderRadius,
-        border: Border.all(
-            color: theme.textTheme.headlineMedium?.color ?? Colors.white,
-            width: 1),
+        border: Border.all(color: theme.textTheme.headlineMedium?.color ?? Colors.white, width: 1),
       ),
       child: Center(
         child: Icon(
@@ -221,17 +209,15 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildLoginOption(String iconPath, VoidCallback onTap, ThemeData theme,
-      {Color? color}) {
+  Widget _buildLoginOption(String iconPath, VoidCallback onTap, ThemeData theme, {Color? color}) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
         width: 50,
         height: 50,
         decoration: BoxDecoration(
-          border: Border.all(
-              color: theme.textTheme.headlineMedium?.color ?? Colors.white,
-              width: 1),
+          border:
+              Border.all(color: theme.textTheme.headlineMedium?.color ?? Colors.white, width: 1),
           borderRadius: BorderRadius.circular(4),
         ),
         child: Center(

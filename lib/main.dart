@@ -24,8 +24,7 @@ class MyApp extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
-        if (!currentFocus.hasPrimaryFocus &&
-            currentFocus.focusedChild != null) {
+        if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
           FocusManager.instance.primaryFocus!.unfocus();
         }
       },
@@ -36,6 +35,7 @@ class MyApp extends StatelessWidget {
         child: GetMaterialApp(
           enableLog: true,
           getPages: AppPage.pages,
+
           useInheritedMediaQuery: true,
           defaultTransition: Transition.cupertino,
           debugShowCheckedModeBanner: false,
@@ -49,6 +49,19 @@ class MyApp extends StatelessWidget {
           themeMode: themeController.theme,
           initialRoute: Routes.login,
         ),
+      ),
+    );
+  }
+}
+
+class Home2 extends StatelessWidget {
+  const Home2({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("APpbar"),
       ),
     );
   }
