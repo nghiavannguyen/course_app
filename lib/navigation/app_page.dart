@@ -1,3 +1,4 @@
+import 'package:course_app/module/auth/binding/login_binding.dart';
 import 'package:course_app/module/course/binding/detail_course_binding.dart';
 import 'package:course_app/module/course/screen/detail_course_screen.dart';
 import 'package:course_app/module/search/binding/suggestion_search_binding.dart';
@@ -13,7 +14,7 @@ import 'package:get/get.dart';
 
 class AppPage {
   static List<GetPage> pages = [
-    GetPage(name: Routes.login, page: () => const LoginScreen(), bindings: []),
+    GetPage(name: Routes.login, page: () => const LoginScreen(), bindings: [LoginBinding()]),
     GetPage(
       name: Routes.root,
       page: () => const RootApp(),
@@ -32,9 +33,7 @@ class AppPage {
       page: () => const ResultSearchScreen(),
     ),
     GetPage(
-        name: '${Routes.course}/:id',
-        page: () => const CourseScreen(),
-        binding: CourseBinding()),
+        name: '${Routes.course}/:id', page: () => const CourseScreen(), binding: CourseBinding()),
     GetPage(
         name: "${Routes.detailCourse}/:id",
         page: () => DetailCourseScreen(),

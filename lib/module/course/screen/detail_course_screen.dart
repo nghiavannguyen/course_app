@@ -1,3 +1,4 @@
+import 'package:course_app/module/course/widget/youtube_video_player.dart';
 import 'package:flutter/material.dart';
 
 class DetailCourseScreen extends StatefulWidget {
@@ -12,10 +13,8 @@ class _DetailCourseScreenState extends State<DetailCourseScreen>
   late TabController _tabController;
 
   // DUMMY DATA
-  final String videoTitle =
-      "Important : Source Code Repository required for course";
-  final String courseTitle =
-      "Python OOP : Object Oriented Programming in Python";
+  final String videoTitle = "Important : Source Code Repository required for course";
+  final String courseTitle = "Python OOP : Object Oriented Programming in Python";
   final String courseAuthor = "Deepali Srivastava";
   final String videoDuration = "06:55 mins";
   final List<SectionModel> sections = [
@@ -93,7 +92,12 @@ class _DetailCourseScreenState extends State<DetailCourseScreen>
       body: Column(
         children: [
           // ===== Phần đầu: Video hoặc placeholder =====
-          _buildVideoHeader(context),
+          // _buildVideoHeader(context),
+          SizedBox(
+            child: YoutubeVideoPlayer(
+              youtubeUrl: "https://www.youtube.com/watch?v=kqtD5dpn9C8",
+            ),
+          ),
 
           // ===== TabBar (Lectures, Downloads, More) =====
           Container(
@@ -101,11 +105,7 @@ class _DetailCourseScreenState extends State<DetailCourseScreen>
             child: TabBar(
               controller: _tabController,
               labelColor: Theme.of(context).textTheme.bodyLarge?.color,
-              unselectedLabelColor: Theme.of(context)
-                  .textTheme
-                  .bodyLarge
-                  ?.color
-                  ?.withOpacity(0.6),
+              unselectedLabelColor: Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.6),
               indicatorColor: Theme.of(context).primaryColor,
               tabs: const [
                 Tab(text: "Lectures"),
@@ -254,9 +254,7 @@ class _DetailCourseScreenState extends State<DetailCourseScreen>
       children: section.lectures.map((lecture) {
         return ListTile(
           leading: Icon(
-            lecture.type == LectureType.video
-                ? Icons.play_circle_fill
-                : Icons.quiz,
+            lecture.type == LectureType.video ? Icons.play_circle_fill : Icons.quiz,
           ),
           title: Text(
             "${lecture.index} ${lecture.title}",
@@ -265,11 +263,7 @@ class _DetailCourseScreenState extends State<DetailCourseScreen>
           subtitle: Text(
             lecture.durationOrQuestions,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: Theme.of(context)
-                      .textTheme
-                      .bodySmall
-                      ?.color
-                      ?.withOpacity(0.7),
+                  color: Theme.of(context).textTheme.bodySmall?.color?.withOpacity(0.7),
                 ),
           ),
           trailing: const Icon(Icons.download_outlined),
