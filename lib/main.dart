@@ -2,6 +2,7 @@ import 'package:course_app/core/di/service_locator.dart';
 import 'package:course_app/navigation/app_page.dart';
 import 'package:course_app/navigation/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'core/config/app_theme.dart';
@@ -10,6 +11,7 @@ import 'module/theme/controller/theme_controller.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   setupLocator();
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
 
   runApp(const MyApp());
 }

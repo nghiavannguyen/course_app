@@ -1,8 +1,13 @@
+import 'dart:io';
+
 import 'package:course_app/core/di/service_locator.dart';
 import 'package:course_app/core/network/dio_client.dart';
+import 'package:course_app/module/auth/controller/login_controller.dart';
 import 'package:course_app/navigation/routes.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sub_project/core/util/helper/logger.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -10,6 +15,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loginController = Get.find<LoginController>();
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -93,30 +99,56 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 24),
 
               // Login button
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () async {
-                    Get.toNamed(Routes.root);
-                    final res = await sl<DioClient>().dio.post('/auth/login',
-                        data: {
-                          "username": "ad@gmail.com",
-                          "password": "nghia1"
-                        });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: theme.primaryColor,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
+              Obx(() {
+                return SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      // Get.toNamed(Routes.root);
+                      Logger.log(runtimeType, "LOG ABC");
+
+                      final result =
+                          await loginController.login("ad@gmail.com", "nghia1");
+                      result.fold(
+                        (error) {
+                          // Handle error
+                          Logger.log(runtimeType, "Error: $error");
+                          Get.showSnackbar(
+                            GetSnackBar(
+                              title: 'Thông báo',
+                              message: error,
+                              duration: const Duration(seconds: 2),
+                              backgroundColor: Colors.red,
+                            ),
+                          );
+                        },
+                        (success) {
+                          // Handle success
+                          if (success) {
+                            Get.offAllNamed(Routes.root);
+                          }
+                        },
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: theme.primaryColor,
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
                     ),
+                    child: loginController.isLoading.value
+                        ? CircularProgressIndicator.adaptive()
+                        : Text(
+                            'Log in',
+                            style: theme.textTheme.labelLarge?.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                   ),
-                  child: Text(
-                    'Log in',
-                    style: theme.textTheme.labelLarge,
-                  ),
-                ),
-              ),
+                );
+              }),
 
               const SizedBox(height: 24),
 
