@@ -1,3 +1,4 @@
+import 'package:course_app/module/course/widget/youtube_video_player.dart';
 import 'package:course_app/module/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:sub_project/core/constant/constant_export.dart';
@@ -9,8 +10,7 @@ class CourseScreen extends StatelessWidget {
 
   // ==== DUMMY DATA (bạn có thể thay thế) ====
   final String coursePreviewUrl = "https://dummyimage.com/600x300";
-  final String courseTitle =
-      "React - The Complete Guide 2025 (incl. Next.js, Redux)";
+  final String courseTitle = "React - The Complete Guide 2025 (incl. Next.js, Redux)";
   final double courseRating = 4.6;
   final int courseRatingCount = 225000;
   final int courseStudentsCount = 940000;
@@ -89,10 +89,8 @@ class CourseScreen extends StatelessWidget {
           aspectRatio: 16 / 9,
           child: Stack(
             children: [
-              Image.network(
-                coursePreviewUrl,
-                width: double.infinity,
-                fit: BoxFit.cover,
+              YoutubeVideoPlayer(
+                youtubeUrl: "https://www.youtube.com/watch?v=kqtD5dpn9C8",
               ),
               Positioned(
                 bottom: 8,
@@ -498,8 +496,7 @@ class CourseScreen extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         radius: 24,
-                        backgroundImage:
-                            NetworkImage(inst.avatarUrl), // dummy if needed
+                        backgroundImage: NetworkImage(inst.avatarUrl), // dummy if needed
                       ),
                       const SizedBox(width: 12),
                       Expanded(
@@ -508,10 +505,7 @@ class CourseScreen extends StatelessWidget {
                           children: [
                             Text(
                               inst.name,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge
-                                  ?.copyWith(
+                              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                     fontWeight: FontWeight.bold,
                                   ),
                             ),
@@ -530,11 +524,7 @@ class CourseScreen extends StatelessWidget {
                     "${inst.rating} Instructor rating | ${_formatNumber(inst.reviewsCount)} Reviews | "
                     "${_formatNumber(inst.studentsCount)} Students | ${inst.coursesCount} Courses",
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: Theme.of(context)
-                              .textTheme
-                              .bodySmall
-                              ?.color
-                              ?.withOpacity(0.7),
+                          color: Theme.of(context).textTheme.bodySmall?.color?.withOpacity(0.7),
                         ),
                   ),
                   const SizedBox(height: 8),
@@ -554,11 +544,10 @@ class CourseScreen extends StatelessWidget {
                         },
                         child: Text(
                           "Show more",
-                          style:
-                              Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    color: Theme.of(context).primaryColor,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                color: Theme.of(context).primaryColor,
+                                fontWeight: FontWeight.bold,
+                              ),
                         ),
                       ),
                       const SizedBox(width: 16),
@@ -571,10 +560,9 @@ class CourseScreen extends StatelessWidget {
                         ),
                         child: Text(
                           "View profile",
-                          style:
-                              Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
                         ),
                       ),
                     ],
@@ -703,11 +691,7 @@ class CourseScreen extends StatelessWidget {
               Text(
                 review.timeAgo,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Theme.of(context)
-                          .textTheme
-                          .bodySmall
-                          ?.color
-                          ?.withOpacity(0.7),
+                      color: Theme.of(context).textTheme.bodySmall?.color?.withOpacity(0.7),
                     ),
               ),
             ],

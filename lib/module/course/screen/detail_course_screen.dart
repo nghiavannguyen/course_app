@@ -89,140 +89,46 @@ class _DetailCourseScreenState extends State<DetailCourseScreen>
         ],
       ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: Column(
-        children: [
-          // ===== Phần đầu: Video hoặc placeholder =====
-          // _buildVideoHeader(context),
-          SizedBox(
-            child: YoutubeVideoPlayer(
-              youtubeUrl: "https://www.youtube.com/watch?v=kqtD5dpn9C8",
-            ),
-          ),
-
-          // ===== TabBar (Lectures, Downloads, More) =====
-          Container(
-            color: Theme.of(context).canvasColor.withOpacity(0.1),
-            child: TabBar(
-              controller: _tabController,
-              labelColor: Theme.of(context).textTheme.bodyLarge?.color,
-              unselectedLabelColor: Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.6),
-              indicatorColor: Theme.of(context).primaryColor,
-              tabs: const [
-                Tab(text: "Lectures"),
-                Tab(text: "Downloads"),
-                Tab(text: "More"),
-              ],
-            ),
-          ),
-
-          // ===== Nội dung TabBarView =====
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: [
-                // Tab 1: Lectures
-                _buildLecturesTab(context),
-                // Tab 2: Downloads
-                _buildDownloadsTab(context),
-                // Tab 3: More
-                _buildMoreTab(context),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  // ============================
-  // WIDGET: Phần đầu video
-  // ============================
-  Widget _buildVideoHeader(BuildContext context) {
-    return Container(
-      // color: Theme.of(context).canvasColor.withOpacity(0.1),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Placeholder video (tỷ lệ 16:9)
-          AspectRatio(
-            aspectRatio: 16 / 9,
-            child: Stack(
-              children: [
-                // Ảnh dummy mô phỏng video
-                Image.network(
-                  "https://dummyimage.com/600x400",
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
-                // Nút play ở giữa (demo)
-                Center(
-                  child: Icon(
-                    Icons.play_circle_fill,
-                    color: Colors.white.withOpacity(0.8),
-                    size: 64,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 8),
-
-          // Tiêu đề Lecture
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Text(
-              "Lecture : $videoTitle",
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-            ),
-          ),
-          const SizedBox(height: 8),
-
-          // Nút "Get Started"
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: SizedBox(
-              width: double.infinity,
-              height: 40,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).primaryColor,
-                ),
-                onPressed: () {
-                  // TODO: Bắt đầu xem
-                },
-                child: Text(
-                  "Get Started",
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 250,
+              child: YoutubeVideoPlayer(
+                youtubeUrl: "https://www.youtube.com/watch?v=kqtD5dpn9C8",
               ),
             ),
-          ),
-          const SizedBox(height: 8),
-
-          // Tên khoá học + Tác giả
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Text(
-              courseTitle,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+            const SizedBox(height: 16),
+            // TabBar
+            Container(
+              color: Theme.of(context).canvasColor.withOpacity(0.1),
+              child: TabBar(
+                controller: _tabController,
+                labelColor: Theme.of(context).textTheme.bodyLarge?.color,
+                unselectedLabelColor:
+                    Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.6),
+                indicatorColor: Theme.of(context).primaryColor,
+                tabs: const [
+                  Tab(text: "Lectures"),
+                  Tab(text: "Downloads"),
+                  Tab(text: "More"),
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-            child: Text(
-              courseAuthor,
-              style: Theme.of(context).textTheme.bodyMedium,
+            // TabBarView
+            SizedBox(
+              height: MediaQuery.of(context).size.height, // Đảm bảo có chiều cao
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  _buildLecturesTab(context),
+                  _buildDownloadsTab(context),
+                  _buildMoreTab(context),
+                ],
+              ),
             ),
-          ),
-          const SizedBox(height: 8),
-        ],
+          ],
+        ),
       ),
     );
   }

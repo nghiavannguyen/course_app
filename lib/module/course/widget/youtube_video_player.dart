@@ -24,8 +24,10 @@ class _YoutubeVideoPlayerState extends State<YoutubeVideoPlayer> {
     _controller = YoutubePlayerController(
       initialVideoId: _videoId,
       flags: const YoutubePlayerFlags(
-        // showLiveFullscreenButton: true,
-        useHybridComposition: true,
+        showLiveFullscreenButton: false,
+        disableDragSeek: true,
+        enableCaption: true,
+        hideThumbnail: true,
         autoPlay: true,
         mute: true,
         isLive: false,
@@ -48,10 +50,7 @@ class _YoutubeVideoPlayerState extends State<YoutubeVideoPlayer> {
         showVideoProgressIndicator: true,
         progressIndicatorColor: Colors.redAccent,
       ),
-      builder: (context, player) => AspectRatio(
-        aspectRatio: 16 / 9,
-        child: player,
-      ),
+      builder: (context, player) => player,
     );
   }
 }
