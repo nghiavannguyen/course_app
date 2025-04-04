@@ -12,6 +12,7 @@ class LoginScreen extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: theme.scaffoldBackgroundColor,
       body: SafeArea(
         child: Padding(
@@ -21,12 +22,6 @@ class LoginScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 16),
               // Close button
-              IconButton(
-                icon: Icon(Icons.close, color: theme.textTheme.headlineMedium?.color, size: 32),
-                onPressed: () {},
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints(),
-              ),
 
               // Icons section
               Expanded(
@@ -38,20 +33,25 @@ class LoginScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          _buildIcon(Icons.web, BorderRadius.circular(8), theme),
+                          _buildIcon(
+                              Icons.web, BorderRadius.circular(8), theme),
                           const SizedBox(width: 48),
-                          _buildIcon(Icons.email_outlined, BorderRadius.circular(8), theme),
+                          _buildIcon(Icons.email_outlined,
+                              BorderRadius.circular(8), theme),
                         ],
                       ),
                       const SizedBox(height: 24),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          _buildIcon(Icons.code, BorderRadius.circular(50), theme),
+                          _buildIcon(
+                              Icons.code, BorderRadius.circular(50), theme),
                           const SizedBox(width: 48),
-                          _buildIcon(Icons.camera_alt_outlined, BorderRadius.zero, theme),
+                          _buildIcon(Icons.camera_alt_outlined,
+                              BorderRadius.zero, theme),
                           const SizedBox(width: 48),
-                          _buildIcon(Icons.language, BorderRadius.circular(50), theme),
+                          _buildIcon(
+                              Icons.language, BorderRadius.circular(50), theme),
                         ],
                       ),
                     ],
@@ -72,6 +72,9 @@ class LoginScreen extends StatelessWidget {
 
               // Email field
               TextField(
+                onChanged: (value) {},
+                keyboardType: TextInputType.emailAddress,
+                textInputAction: TextInputAction.next,
                 style: theme.textTheme.bodyLarge,
                 decoration: InputDecoration(
                   hintText: 'Email',
@@ -80,7 +83,9 @@ class LoginScreen extends StatelessWidget {
                     borderSide: BorderSide(color: Colors.grey),
                   ),
                   focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: theme.textTheme.bodyLarge?.color ?? Colors.white),
+                    borderSide: BorderSide(
+                        color:
+                            theme.textTheme.bodyLarge?.color ?? Colors.white),
                   ),
                 ),
               ),
@@ -94,7 +99,10 @@ class LoginScreen extends StatelessWidget {
                   onPressed: () async {
                     Get.toNamed(Routes.root);
                     final res = await sl<DioClient>().dio.post('/auth/login',
-                        data: {"username": "ad@gmail.com", "password": "nghia1"});
+                        data: {
+                          "username": "ad@gmail.com",
+                          "password": "nghia1"
+                        });
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: theme.primaryColor,
@@ -156,7 +164,9 @@ class LoginScreen extends StatelessWidget {
                         style: theme.textTheme.bodyMedium,
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Get.toNamed(Routes.signUp);
+                        },
                         child: Text(
                           'Sign up',
                           style: theme.textTheme.bodyMedium?.copyWith(
@@ -196,7 +206,9 @@ class LoginScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: theme.scaffoldBackgroundColor,
         borderRadius: borderRadius,
-        border: Border.all(color: theme.textTheme.headlineMedium?.color ?? Colors.white, width: 1),
+        border: Border.all(
+            color: theme.textTheme.headlineMedium?.color ?? Colors.white,
+            width: 1),
       ),
       child: Center(
         child: Icon(
@@ -208,15 +220,17 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildLoginOption(String iconPath, VoidCallback onTap, ThemeData theme, {Color? color}) {
+  Widget _buildLoginOption(String iconPath, VoidCallback onTap, ThemeData theme,
+      {Color? color}) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
         width: 50,
         height: 50,
         decoration: BoxDecoration(
-          border:
-              Border.all(color: theme.textTheme.headlineMedium?.color ?? Colors.white, width: 1),
+          border: Border.all(
+              color: theme.textTheme.headlineMedium?.color ?? Colors.white,
+              width: 1),
           borderRadius: BorderRadius.circular(4),
         ),
         child: Center(

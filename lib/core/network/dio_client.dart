@@ -4,7 +4,7 @@ import 'package:logger/web.dart';
 
 class DioClient {
   late final Dio dio;
-  String ipV4 = "172.29.0.1";
+  String ipV4 = "192.168.10.77";
   final logger = Logger();
   DioClient() {
     dio = Dio(

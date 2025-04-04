@@ -9,11 +9,12 @@ class AppThemes {
     textTheme: AppTextStyles.lightTextTheme,
     package: 'sub_project',
     fontFamily: 'poppins',
-    chipTheme: ChipThemeData(
-      backgroundColor: Colors.white,
+    dialogTheme: DialogTheme(
+      backgroundColor: Color(0xFF272727),
+      titleTextStyle: TextStyle(color: Colors.white),
+      contentTextStyle: TextStyle(color: Colors.white),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(24),
-        side: BorderSide(color: Colors.white),
+        borderRadius: BorderRadius.circular(10.0),
       ),
     ),
     appBarTheme: AppBarTheme(
@@ -29,6 +30,14 @@ class AppThemes {
   );
 
   static final darkTheme = ThemeData(
+    dialogTheme: DialogTheme(
+      backgroundColor: Colors.white,
+      contentTextStyle: TextStyle(color: Colors.black),
+      titleTextStyle: TextStyle(color: Colors.black),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+    ),
     brightness: Brightness.dark,
     primaryColor: Colors.purple,
     scaffoldBackgroundColor: Colors.black,
