@@ -1,12 +1,8 @@
-import 'dart:io';
-
-import 'package:course_app/core/di/service_locator.dart';
-import 'package:course_app/core/network/dio_client.dart';
 import 'package:course_app/module/auth/controller/login_controller.dart';
 import 'package:course_app/navigation/routes.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sub_project/common/widget/text_field/common_textfield_widget.dart';
 import 'package:sub_project/core/util/helper/logger.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -18,6 +14,7 @@ class LoginScreen extends StatelessWidget {
     final loginController = Get.find<LoginController>();
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: theme.scaffoldBackgroundColor,
       body: SafeArea(
         child: Padding(
@@ -27,12 +24,6 @@ class LoginScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 16),
               // Close button
-              IconButton(
-                icon: Icon(Icons.close, color: theme.textTheme.headlineMedium?.color, size: 32),
-                onPressed: () {},
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints(),
-              ),
 
               // Icons section
               Expanded(
@@ -44,20 +35,25 @@ class LoginScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          _buildIcon(Icons.web, BorderRadius.circular(8), theme),
+                          _buildIcon(
+                              Icons.web, BorderRadius.circular(8), theme),
                           const SizedBox(width: 48),
-                          _buildIcon(Icons.email_outlined, BorderRadius.circular(8), theme),
+                          _buildIcon(Icons.email_outlined,
+                              BorderRadius.circular(8), theme),
                         ],
                       ),
                       const SizedBox(height: 24),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          _buildIcon(Icons.code, BorderRadius.circular(50), theme),
+                          _buildIcon(
+                              Icons.code, BorderRadius.circular(50), theme),
                           const SizedBox(width: 48),
-                          _buildIcon(Icons.camera_alt_outlined, BorderRadius.zero, theme),
+                          _buildIcon(Icons.camera_alt_outlined,
+                              BorderRadius.zero, theme),
                           const SizedBox(width: 48),
-                          _buildIcon(Icons.language, BorderRadius.circular(50), theme),
+                          _buildIcon(
+                              Icons.language, BorderRadius.circular(50), theme),
                         ],
                       ),
                     ],
@@ -77,20 +73,20 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 48),
 
               // Email field
-              TextField(
-                style: theme.textTheme.bodyLarge,
-                decoration: InputDecoration(
-                  hintText: 'Email',
-                  hintStyle: TextStyle(color: Colors.grey),
-                  enabledBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: theme.textTheme.bodyLarge?.color ?? Colors.white),
-                  ),
-                ),
-              ),
+              CommonTextfieldWidget(
+                  label: "Email", controller: loginController.emailController),
 
+              const SizedBox(height: 16),
+              Obx(() => CommonTextfieldWidget(
+                    label: "Mật khẩu",
+                    controller: loginController.passwordController,
+                    obscureText: loginController.isPasswordHidden.value,
+                    textInputAction: TextInputAction.done,
+                    showToggleObscureIcon: true,
+                    onSuffixTap: () {
+                      loginController.isPasswordHidden.toggle();
+                    },
+                  )),
               const SizedBox(height: 24),
 
               // Login button
@@ -102,7 +98,10 @@ class LoginScreen extends StatelessWidget {
                       // Get.toNamed(Routes.root);
                       Logger.log(runtimeType, "LOG ABC");
 
-                      final result = await loginController.login("ad@gmail.com", "nghia1");
+                      final result = await loginController.login(
+                        loginController.emailController.text.trim(),
+                        loginController.passwordController.text.trim(),
+                      );
                       result.fold(
                         (error) {
                           // Handle error
@@ -190,7 +189,9 @@ class LoginScreen extends StatelessWidget {
                         style: theme.textTheme.bodyMedium,
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Get.toNamed(Routes.signUp);
+                        },
                         child: Text(
                           'Sign up',
                           style: theme.textTheme.bodyMedium?.copyWith(
@@ -230,7 +231,9 @@ class LoginScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: theme.scaffoldBackgroundColor,
         borderRadius: borderRadius,
-        border: Border.all(color: theme.textTheme.headlineMedium?.color ?? Colors.white, width: 1),
+        border: Border.all(
+            color: theme.textTheme.headlineMedium?.color ?? Colors.white,
+            width: 1),
       ),
       child: Center(
         child: Icon(
@@ -242,15 +245,17 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildLoginOption(String iconPath, VoidCallback onTap, ThemeData theme, {Color? color}) {
+  Widget _buildLoginOption(String iconPath, VoidCallback onTap, ThemeData theme,
+      {Color? color}) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
         width: 50,
         height: 50,
         decoration: BoxDecoration(
-          border:
-              Border.all(color: theme.textTheme.headlineMedium?.color ?? Colors.white, width: 1),
+          border: Border.all(
+              color: theme.textTheme.headlineMedium?.color ?? Colors.white,
+              width: 1),
           borderRadius: BorderRadius.circular(4),
         ),
         child: Center(

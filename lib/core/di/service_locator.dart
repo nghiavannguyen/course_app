@@ -10,5 +10,5 @@ Future<void> setupLocator() async {
   await hiveService.init();
   sl.registerSingleton<AppHive>(hiveService);
 
-  sl.registerLazySingleton<DioClient>(() => DioClient());
+  sl.registerSingleton<DioClient>(DioClient());
 }
