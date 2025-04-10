@@ -2,13 +2,21 @@ import 'package:course_app/core/di/service_locator.dart';
 import 'package:course_app/core/network/dio_client.dart';
 import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sub_project/core/util/helper/logger.dart';
 
 class LoginController extends GetxController {
   var isLoading = false.obs;
 
+  final passwordController = TextEditingController();
+  final emailController = TextEditingController();
+  final isPasswordHidden = true.obs;
+  final isRememberMe = true.obs;
+
   Future<Either<String, bool>> login(String username, String password) async {
+    final username = emailController.text.trim();
+    final password = passwordController.text.trim();
     isLoading.value = true;
 
     try {

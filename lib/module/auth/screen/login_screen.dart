@@ -1,12 +1,8 @@
-import 'dart:io';
-
-import 'package:course_app/core/di/service_locator.dart';
-import 'package:course_app/core/network/dio_client.dart';
 import 'package:course_app/module/auth/controller/login_controller.dart';
 import 'package:course_app/navigation/routes.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sub_project/common/widget/text_field/common_textfield_widget.dart';
 import 'package:sub_project/core/util/helper/logger.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -77,25 +73,20 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 48),
 
               // Email field
-              TextField(
-                onChanged: (value) {},
-                keyboardType: TextInputType.emailAddress,
-                textInputAction: TextInputAction.next,
-                style: theme.textTheme.bodyLarge,
-                decoration: InputDecoration(
-                  hintText: 'Email',
-                  hintStyle: TextStyle(color: Colors.grey),
-                  enabledBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                        color:
-                            theme.textTheme.bodyLarge?.color ?? Colors.white),
-                  ),
-                ),
-              ),
+              CommonTextfieldWidget(
+                  label: "Email", controller: loginController.emailController),
 
+              const SizedBox(height: 16),
+              Obx(() => CommonTextfieldWidget(
+                    label: "Mật khẩu",
+                    controller: loginController.passwordController,
+                    obscureText: loginController.isPasswordHidden.value,
+                    textInputAction: TextInputAction.done,
+                    showToggleObscureIcon: true,
+                    onSuffixTap: () {
+                      loginController.isPasswordHidden.toggle();
+                    },
+                  )),
               const SizedBox(height: 24),
 
               // Login button
@@ -107,8 +98,10 @@ class LoginScreen extends StatelessWidget {
                       // Get.toNamed(Routes.root);
                       Logger.log(runtimeType, "LOG ABC");
 
-                      final result =
-                          await loginController.login("ad@gmail.com", "nghia1");
+                      final result = await loginController.login(
+                        loginController.emailController.text.trim(),
+                        loginController.passwordController.text.trim(),
+                      );
                       result.fold(
                         (error) {
                           // Handle error

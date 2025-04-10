@@ -2,6 +2,7 @@
 import 'package:course_app/module/signup/controller/sign_up_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sub_project/common/widget/text_field/common_textfield_widget.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -12,13 +13,14 @@ class SignUpScreen extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.close, size: 32),
-          onPressed: controller.onCloseTap,
+          onPressed: () => Get.back(),
         ),
       ),
       body: SafeArea(
@@ -44,7 +46,7 @@ class SignUpScreen extends StatelessWidget {
                               BorderRadius.circular(8), theme),
                         ],
                       ),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 16),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -71,13 +73,35 @@ class SignUpScreen extends StatelessWidget {
                     ?.copyWith(fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 12),
+
+              CommonTextfieldWidget(
+                  label: "Email", controller: controller.emailController),
+              const SizedBox(height: 8),
+              Obx(() => CommonTextfieldWidget(
+                    label: "Mật khẩu",
+                    controller: controller.passwordController,
+                    obscureText: controller.isPasswordHidden.value,
+                    textInputAction: TextInputAction.done,
+                    showToggleObscureIcon: true,
+                    onSuffixTap: () {
+                      controller.isPasswordHidden.toggle();
+                    },
+                  )),
+
+              const SizedBox(height: 16),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Obx(() => Checkbox(
-                        value: controller.receiveOffers.value,
-                        onChanged: (value) =>
-                            controller.receiveOffers.value = value ?? false,
+                  Obx(() => SizedBox(
+                        height: 24,
+                        width: 24,
+                        child: Checkbox(
+                          value: controller.receiveOffers.value,
+                          onChanged: (value) =>
+                              controller.receiveOffers.value = value ?? false,
+                        ),
                       )),
+                  const SizedBox(width: 8),
                   Expanded(
                     child: Text(
                       "Gửi cho tôi các ưu đãi đặc biệt, đề xuất cá nhân hóa và bí quyết học tập.",
@@ -90,7 +114,7 @@ class SignUpScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton.icon(
-                  onPressed: controller.onRegister,
+                  onPressed: _handleRegister,
                   icon: const Icon(Icons.email),
                   label: const Text("Đăng ký"),
                   style: ElevatedButton.styleFrom(
@@ -160,7 +184,7 @@ class SignUpScreen extends StatelessWidget {
                       Text("Bạn đã có tài khoản chưa? ",
                           style: theme.textTheme.bodyMedium),
                       GestureDetector(
-                        onTap: controller.onLoginTap,
+                        onTap: () {},
                         child: Text(
                           "Đăng nhập",
                           style: theme.textTheme.bodyMedium?.copyWith(
@@ -226,5 +250,26 @@ class SignUpScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _handleRegister() async {
+    final controller = Get.find<SignUpController>();
+    final result = await controller.onRegister();
+
+    if (!result.isSuccess) {
+      Get.snackbar(
+        "Lỗi",
+        result.message ?? "Đăng ký thất bại",
+        snackPosition: SnackPosition.TOP,
+      );
+      return;
+    }
+
+    Get.snackbar(
+      "Thành công",
+      "Đăng ký thành công",
+      snackPosition: SnackPosition.TOP,
+    );
+    Get.offNamed('/login');
   }
 }
