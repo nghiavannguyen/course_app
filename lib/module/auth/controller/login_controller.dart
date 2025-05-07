@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sub_project/core/util/helper/logger.dart';
 
+import '../../../core/storage/app_hive.dart';
+
 class LoginController extends GetxController {
   var isLoading = false.obs;
 
@@ -26,6 +28,13 @@ class LoginController extends GetxController {
       );
 
       if (res.statusCode == 200 || res.statusCode == 201) {
+        final data = res.data['data'];
+
+        await sl<AppHive>().saveData('user_id', data['id']);
+        await sl<AppHive>().saveData('access_token', data['access_token']);
+
+        Logger.log(runtimeType, "✅ Đã lưu user_id: ${data['id']}");
+
         return Right(true);
       } else {
         return Left("Đã xảy ra lỗi không xác định");

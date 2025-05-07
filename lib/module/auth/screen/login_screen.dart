@@ -5,13 +5,12 @@ import 'package:get/get.dart';
 import 'package:sub_project/common/widget/text_field/common_textfield_widget.dart';
 import 'package:sub_project/core/util/helper/logger.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends GetView<LoginController> {
   const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final loginController = Get.find<LoginController>();
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -23,9 +22,8 @@ class LoginScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 16),
-              // Close button
 
-              // Icons section
+              // Khu vực icon minh họa
               Expanded(
                 flex: 3,
                 child: Center(
@@ -61,10 +59,10 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
 
-              // Login text
+              // Tiêu đề
               Center(
                 child: Text(
-                  'Log in to continue your\nlearning journey',
+                  'Đăng nhập để tiếp tục hành trình học tập của bạn',
                   textAlign: TextAlign.center,
                   style: theme.textTheme.headlineMedium,
                 ),
@@ -72,40 +70,44 @@ class LoginScreen extends StatelessWidget {
 
               const SizedBox(height: 48),
 
-              // Email field
+              // Trường Email
               CommonTextfieldWidget(
-                  label: "Email", controller: loginController.emailController),
+                label: "Email",
+                controller: controller.emailController,
+              ),
 
               const SizedBox(height: 16),
+
+              // Trường mật khẩu
               Obx(() => CommonTextfieldWidget(
                     label: "Mật khẩu",
-                    controller: loginController.passwordController,
-                    obscureText: loginController.isPasswordHidden.value,
+                    controller: controller.passwordController,
+                    obscureText: controller.isPasswordHidden.value,
                     textInputAction: TextInputAction.done,
                     showToggleObscureIcon: true,
                     onSuffixTap: () {
-                      loginController.isPasswordHidden.toggle();
+                      controller.isPasswordHidden.toggle();
                     },
                   )),
+
               const SizedBox(height: 24),
 
-              // Login button
+              // Nút đăng nhập
               Obx(() {
                 return SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () async {
-                      // Get.toNamed(Routes.root);
-                      Logger.log(runtimeType, "LOG ABC");
+                      Get.offAllNamed(Routes.root);
+                      Logger.log(runtimeType, "LOG Đăng nhập");
 
-                      final result = await loginController.login(
-                        loginController.emailController.text.trim(),
-                        loginController.passwordController.text.trim(),
+                      final result = await controller.login(
+                        controller.emailController.text.trim(),
+                        controller.passwordController.text.trim(),
                       );
                       result.fold(
                         (error) {
-                          // Handle error
-                          Logger.log(runtimeType, "Error: $error");
+                          Logger.log(runtimeType, "Lỗi: $error");
                           Get.showSnackbar(
                             GetSnackBar(
                               title: 'Thông báo',
@@ -116,7 +118,6 @@ class LoginScreen extends StatelessWidget {
                           );
                         },
                         (success) {
-                          // Handle success
                           if (success) {
                             Get.offAllNamed(Routes.root);
                           }
@@ -130,10 +131,10 @@ class LoginScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    child: loginController.isLoading.value
+                    child: controller.isLoading.value
                         ? CircularProgressIndicator.adaptive()
                         : Text(
-                            'Log in',
+                            'Đăng nhập',
                             style: theme.textTheme.labelLarge?.copyWith(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -145,12 +146,12 @@ class LoginScreen extends StatelessWidget {
 
               const SizedBox(height: 24),
 
-              // Other login options
+              // Tuỳ chọn khác
               Center(
                 child: Column(
                   children: [
                     Text(
-                      'Other login options',
+                      'Hoặc đăng nhập bằng',
                       style: TextStyle(color: Colors.grey),
                     ),
                     const SizedBox(height: 16),
@@ -177,7 +178,7 @@ class LoginScreen extends StatelessWidget {
 
               const Spacer(),
 
-              // Sign up text
+              // Đăng ký nếu chưa có tài khoản
               Center(
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 24.0),
@@ -185,7 +186,7 @@ class LoginScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Don't have an account? ",
+                        "Bạn chưa có tài khoản? ",
                         style: theme.textTheme.bodyMedium,
                       ),
                       GestureDetector(
@@ -193,7 +194,7 @@ class LoginScreen extends StatelessWidget {
                           Get.toNamed(Routes.signUp);
                         },
                         child: Text(
-                          'Sign up',
+                          'Đăng ký',
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: theme.primaryColor,
                             fontWeight: FontWeight.bold,
@@ -205,7 +206,7 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
 
-              // Bottom indicator
+              // Đường kẻ dưới cùng
               Center(
                 child: Container(
                   width: 100,
@@ -232,8 +233,9 @@ class LoginScreen extends StatelessWidget {
         color: theme.scaffoldBackgroundColor,
         borderRadius: borderRadius,
         border: Border.all(
-            color: theme.textTheme.headlineMedium?.color ?? Colors.white,
-            width: 1),
+          color: theme.textTheme.headlineMedium?.color ?? Colors.white,
+          width: 1,
+        ),
       ),
       child: Center(
         child: Icon(
@@ -245,8 +247,12 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildLoginOption(String iconPath, VoidCallback onTap, ThemeData theme,
-      {Color? color}) {
+  Widget _buildLoginOption(
+    String iconPath,
+    VoidCallback onTap,
+    ThemeData theme, {
+    Color? color,
+  }) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -254,8 +260,9 @@ class LoginScreen extends StatelessWidget {
         height: 50,
         decoration: BoxDecoration(
           border: Border.all(
-              color: theme.textTheme.headlineMedium?.color ?? Colors.white,
-              width: 1),
+            color: theme.textTheme.headlineMedium?.color ?? Colors.white,
+            width: 1,
+          ),
           borderRadius: BorderRadius.circular(4),
         ),
         child: Center(

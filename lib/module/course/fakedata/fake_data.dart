@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 final List<String> whatYouWillLearn = [
   "Learn React from the ground up and finish the course as an advanced React developer",
   "Build multiple high-quality demo apps, including a fullstack app built with NextJS",
@@ -89,7 +91,6 @@ final List<StudentReview> studentReviews = const [
   ),
 ];
 
-// Mô phỏng dữ liệu đánh giá (review)
 class StudentReview {
   final String userName;
   final double rating;

@@ -8,7 +8,9 @@ class ResultSearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        scrolledUnderElevation: 0,
+      ),
       body: ListView.builder(
         padding: const EdgeInsets.all(8.0),
         itemCount: 6,

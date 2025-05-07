@@ -8,12 +8,12 @@ import 'package:get/get.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  // ===== DUMMY DATA CHO DEMO =====
+  // ===== DỮ LIỆU MẪU CHO DEMO =====
   final List<CourseModel> shortAndSweetCourses = const [
     CourseModel(
       imageUrl:
           'https://lh3.googleusercontent.com/-nMO5UrXH7Ag/YG6k5BMteZI/AAAAAAAAnAM/5FbE1FwrynIWcuWmyGtk0zPJ-dxiqS4zgCLcBGAsYHQ/w433-h244/image.png',
-      title: "Scikit-learn in Python: 100+ Data Science Projects",
+      title: "Scikit-learn với Python: 100+ Dự án Khoa học Dữ liệu",
       author: "Pawel Krakowiak",
       rating: 4.7,
       ratingCount: 96,
@@ -24,30 +24,8 @@ class HomeScreen extends StatelessWidget {
     CourseModel(
       imageUrl:
           "https://lh3.googleusercontent.com/-nMO5UrXH7Ag/YG6k5BMteZI/AAAAAAAAnAM/5FbE1FwrynIWcuWmyGtk0zPJ-dxiqS4zgCLcBGAsYHQ/w433-h244/image.png",
-      title: "Video Segmentation with Python using Deep Learning",
-      author: "Dr. Angela M & Al Co.",
-      rating: 4.6,
-      ratingCount: 66,
-      price: "₫249,000",
-      oldPrice: "₫499,000",
-      isBestseller: false,
-    ),
-    CourseModel(
-      imageUrl:
-          "https://lh3.googleusercontent.com/-nMO5UrXH7Ag/YG6k5BMteZI/AAAAAAAAnAM/5FbE1FwrynIWcuWmyGtk0zPJ-dxiqS4zgCLcBGAsYHQ/w433-h244/image.png",
-      title: "Video Segmentation with Python using Deep Learning",
-      author: "Dr. Angela M & Al Co.",
-      rating: 4.6,
-      ratingCount: 66,
-      price: "₫249,000",
-      oldPrice: "₫499,000",
-      isBestseller: false,
-    ),
-    CourseModel(
-      imageUrl:
-          "https://lh3.googleusercontent.com/-nMO5UrXH7Ag/YG6k5BMteZI/AAAAAAAAnAM/5FbE1FwrynIWcuWmyGtk0zPJ-dxiqS4zgCLcBGAsYHQ/w433-h244/image.png",
-      title: "Video Segmentation with Python using Deep Learning",
-      author: "Dr. Angela M & Al Co.",
+      title: "Phân đoạn Video với Python bằng Deep Learning",
+      author: "Tiến sĩ Angela M & Cộng sự",
       rating: 4.6,
       ratingCount: 66,
       price: "₫249,000",
@@ -59,8 +37,8 @@ class HomeScreen extends StatelessWidget {
   final List<CourseModel> learnersAreViewing = const [
     CourseModel(
       imageUrl: 'https://i.ytimg.com/vi/pDmSX2rBrww/maxresdefault.jpg',
-      title: "100 Days of Code: The Complete Python Pro Bootcamp",
-      author: "Dr. Angela Yu, Developer and ...",
+      title: "100 Ngày Code: Khóa học Python Pro Toàn diện",
+      author: "Tiến sĩ Angela Yu, Lập trình viên ...",
       rating: 4.7,
       ratingCount: 325785,
       price: "₫249,000",
@@ -69,52 +47,30 @@ class HomeScreen extends StatelessWidget {
     ),
     CourseModel(
       imageUrl: 'https://i.ytimg.com/vi/pDmSX2rBrww/maxresdefault.jpg',
-      title: "The Complete Full-Stack Web Development Bootcamp",
-      author: "Dr. Angela Yu, Developer and ...",
+      title: "Bootcamp Phát triển Web Full-Stack Toàn diện",
+      author: "Tiến sĩ Angela Yu, Lập trình viên ...",
       rating: 4.7,
       ratingCount: 425628,
       price: "₫249,000",
       oldPrice: "₫1,499,000",
       isBestseller: true,
     ),
-    CourseModel(
-      imageUrl: 'https://i.ytimg.com/vi/pDmSX2rBrww/maxresdefault.jpg',
-      title: "The Complete Full-Stack Web Development Bootcamp",
-      author: "Dr. Angela Yu, Developer and ...",
-      rating: 4.7,
-      ratingCount: 425628,
-      price: "₫249,000",
-      oldPrice: "₫1,499,000",
-      isBestseller: true,
-    ),
-    CourseModel(
-      imageUrl: 'https://i.ytimg.com/vi/pDmSX2rBrww/maxresdefault.jpg',
-      title: "The Complete Full-Stack Web Development Bootcamp",
-      author: "Dr. Angela Yu, Developer and ...",
-      rating: 4.7,
-      ratingCount: 425628,
-      price: "₫249,000",
-      oldPrice: "₫1,499,000",
-      isBestseller: true,
-    )
   ];
 
   final List<String> categories = const [
-    "Marketing",
-    "Business",
-    "IT & Software",
-    "Development",
-    "Finance & Accounting",
+    "Tiếp thị",
+    "Kinh doanh",
+    "CNTT & Phần mềm",
+    "Phát triển phần mềm",
+    "Tài chính & Kế toán",
   ];
 
   @override
   Widget build(BuildContext context) {
-    // Lấy textTheme và brightness từ Theme
     final textTheme = Theme.of(context).textTheme;
     final brightness = Theme.of(context).brightness;
 
     return Scaffold(
-      // Không hard-code màu nền, dùng từ theme
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -122,13 +78,13 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // ===== SECTION 1: "Short and sweet courses for you" =====
+              // ===== PHẦN 1: Khóa học ngắn gọn =====
               SectionTitle(
-                title: "Short and sweet courses for you",
+                title: "Khóa học ngắn gọn dành cho bạn",
                 textTheme: textTheme,
               ),
               SizedBox(
-                height: 300, // Chiều cao cho list ngang
+                height: 300,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: shortAndSweetCourses.length,
@@ -154,11 +110,10 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
 
-              // ===== SECTION 2: "Learners are viewing" =====
+              // ===== PHẦN 2: Người học đang xem =====
               SectionTitle(
-                title: "Learners are viewing",
+                title: "Người học đang xem",
                 textTheme: textTheme,
-                // onTap: () {},
               ),
               SizedBox(
                 height: 300,
@@ -181,12 +136,12 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
 
-              // ===== SECTION 3: DANH MỤC =====
+              // ===== PHẦN 3: Danh mục =====
               SectionTitle(
-                title: "Categories",
+                title: "Danh mục",
                 textTheme: textTheme,
                 onTap: () {
-                  //see all on tap here
+                  // xử lý khi nhấn "Xem tất cả"
                 },
               ),
               Padding(
@@ -206,22 +161,20 @@ class HomeScreen extends StatelessWidget {
 
               const SizedBox(height: 24),
 
-              // ===== SECTION 4: LOGO CÔNG TY & CTA =====
+              // ===== PHẦN 4: Logo công ty & CTA =====
               Container(
-                // Đổi sang scaffoldBackgroundColor để đồng bộ theme
                 color: Theme.of(context).scaffoldBackgroundColor,
                 width: double.infinity,
                 padding: const EdgeInsets.all(16),
                 child: Column(
                   children: [
                     Text(
-                      "Top companies trust Abu Education",
+                      "Các công ty hàng đầu tin tưởng Abu Education",
                       style: textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 16),
-                    // Giả lập các logo công ty
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: const [
@@ -232,11 +185,9 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 16),
-                    // CTA
                     Text(
-                      "Try Abu Education Business",
+                      "Dùng thử Abu Education cho Doanh nghiệp",
                       style: textTheme.bodySmall?.copyWith(
-                        // Tùy chỉnh màu tím theo primaryColor hay khác
                         color: Colors.purple,
                         fontWeight: FontWeight.bold,
                       ),
@@ -262,7 +213,6 @@ class PlaceholderLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Thay bằng Image.asset hoặc Image.network logo thực tế
     return Container(
       width: 50,
       height: 50,

@@ -1,44 +1,54 @@
-import 'package:flutter/material.dart';
+// lib/module/search/controller/suggestion_search_controller.dart
+import 'dart:async';
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
-import '../../../navigation/routes.dart';
+import '../service/course_service.dart';
 
 class SuggestionSearchController extends GetxController {
-  final TextEditingController searchTextController = TextEditingController();
-  final RxList<String> searchHistory = <String>[].obs;
-  final RxBool isSearching = false.obs;
+  final CourseService _service = Get.find();
+  final suggestions = <CourseSuggestion>[].obs;
+  final isLoading = false.obs;
+  final error = RxnString();
+
+  late final CancelToken _cancelToken;
+  Timer? _debounce;
 
   @override
   void onInit() {
     super.onInit();
-    _loadSearchHistory();
+    _cancelToken = CancelToken();
   }
 
-  void _loadSearchHistory() {
-    searchHistory.assignAll([
-      "Fff",
-      "abets",
-      "Abfth",
-      "Àh",
-    ]);
+  @override
+  void onClose() {
+    _debounce?.cancel();
+    if (!_cancelToken.isCancelled) _cancelToken.cancel();
+    super.onClose();
   }
 
-  void onSearch(String query) {
-    if (query.isEmpty) return;
+  /// Gọi API gợi ý, debounce 300ms
+  void fetchSuggestions(String query) {
+    _debounce?.cancel();
+    _debounce = Timer(Duration(milliseconds: 300), () async {
+      final q = query.trim();
+      if (q.isEmpty) {
+        suggestions.clear();
+        error.value = null;
+        return;
+      }
+      isLoading.value = true;
+      error.value = null;
 
-    if (!searchHistory.contains(query)) {
-      searchHistory.insert(0, query);
-    }
+      final result = await _service.searchCourses(q, cancelToken: _cancelToken);
+      isLoading.value = false;
 
-    Get.toNamed(Routes.resultSearch, arguments: query);
-  }
-
-  void removeHistoryItem(String item) {
-    searchHistory.remove(item);
-  }
-
-  void clearSearch() {
-    searchTextController.clear();
-    isSearching.value = false;
+      result.fold(
+        (e) => error.value = e,
+        (list) {
+          suggestions.assignAll(list);
+        },
+      );
+    });
   }
 }
