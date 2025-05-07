@@ -24,6 +24,7 @@ class AccountScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Tài khoản"),
         centerTitle: true,
+        scrolledUnderElevation: 0,
       ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
@@ -123,7 +124,7 @@ class AccountScreen extends StatelessWidget {
                             Get.back();
                           },
                           onConfirm: () {
-                            // TODO: Xoá user data ở Hive nếu cần
+                            accountController.logout();
                             Get.offAllNamed(Routes.login);
                           },
                         );

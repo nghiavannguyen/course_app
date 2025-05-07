@@ -2,6 +2,17 @@ import 'package:flutter/material.dart';
 
 class AppThemes {
   static final lightTheme = ThemeData(
+    iconTheme: const IconThemeData(color: Colors.black),
+    iconButtonTheme: IconButtonThemeData(
+      style: IconButton.styleFrom(
+        fixedSize: const Size(double.infinity, 40),
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+      ),
+    ),
     brightness: Brightness.light,
     primaryColor: Colors.blue,
     scaffoldBackgroundColor: Colors.white,
@@ -30,6 +41,17 @@ class AppThemes {
   );
 
   static final darkTheme = ThemeData(
+    iconTheme: const IconThemeData(color: Colors.white),
+    iconButtonTheme: IconButtonThemeData(
+      style: IconButton.styleFrom(
+        fixedSize: const Size(double.infinity, 40),
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+      ),
+    ),
     dialogTheme: DialogTheme(
       backgroundColor: Colors.white,
       contentTextStyle: TextStyle(color: Colors.black),

@@ -58,4 +58,12 @@ class AccountController extends GetxController {
       isLoading.value = false;
     }
   }
+
+  Future<void> logout() async {
+    await sl<AppHive>().deleteData('user_id');
+    await sl<AppHive>().deleteData('access_token');
+    userInfo.clear();
+
+    Logger.log(runtimeType, "👋 Đăng xuất, xoá dữ liệu local");
+  }
 }

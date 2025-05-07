@@ -5,6 +5,6 @@ class LoginBinding extends Bindings {
   @override
   void dependencies() {
     // For example: Get.lazyPut<YourController>(() => YourController());
-    Get.lazyPut<LoginController>(() => LoginController());
+    Get.put<LoginController>(LoginController());
   }
 }

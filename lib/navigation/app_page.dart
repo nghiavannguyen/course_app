@@ -7,6 +7,8 @@ import 'package:course_app/module/search/binding/suggestion_search_binding.dart'
 import 'package:course_app/module/search/screen/result_search_screen.dart';
 import 'package:course_app/module/search/screen/suggestion_search_screen.dart';
 import 'package:course_app/module/signup/binding/sign_up_binding.dart';
+import 'package:course_app/module/wishlist/binding/wish_list_binding.dart';
+import 'package:course_app/module/wishlist/screen/detail_wish_list.dart';
 import 'package:course_app/navigation/routes.dart';
 import 'package:course_app/module/auth/screen/login_screen.dart';
 import 'package:course_app/module/course/binding/course_binding.dart';
@@ -16,6 +18,7 @@ import 'package:course_app/root.dart';
 import 'package:get/get.dart';
 
 import '../module/signup/screen/signup_screen.dart';
+import '../module/wishlist/binding/wish_list_detail_binding.dart';
 
 class AppPage {
   static List<GetPage> pages = [
@@ -31,6 +34,7 @@ class AppPage {
         CourseBinding(),
         DetailCourseBinding(),
         SuggestionSearchBinding(),
+        WishListBinding()
       ],
     ),
     GetPage(
@@ -62,6 +66,11 @@ class AppPage {
     GetPage(
       name: Routes.account,
       page: () => const AccountScreen(),
+    ),
+    GetPage(
+      name: Routes.wishListDetail,
+      page: () => const WishListDetailScreen(),
+      binding: WishListDetailBinding(),
     ),
   ];
 }

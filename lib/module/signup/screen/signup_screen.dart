@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sub_project/common/widget/text_field/common_textfield_widget.dart';
 
+import '../../../navigation/routes.dart';
+
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
 
@@ -29,7 +31,6 @@ class SignUpScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Icon layout giống LoginScreen
               Expanded(
                 flex: 3,
                 child: Center(
@@ -64,7 +65,6 @@ class SignUpScreen extends StatelessWidget {
                   ),
                 ),
               ),
-
               const SizedBox(height: 16),
               Text(
                 "Đăng ký để tận dụng tối đa việc học của bạn",
@@ -73,7 +73,6 @@ class SignUpScreen extends StatelessWidget {
                     ?.copyWith(fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 12),
-
               CommonTextfieldWidget(
                   label: "Email", controller: controller.emailController),
               const SizedBox(height: 8),
@@ -87,7 +86,6 @@ class SignUpScreen extends StatelessWidget {
                       controller.isPasswordHidden.toggle();
                     },
                   )),
-
               const SizedBox(height: 16),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -149,8 +147,6 @@ class SignUpScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 16),
-
-// ⬇️ Điều khoản sử dụng và quyền riêng tư
               Text.rich(
                 TextSpan(
                   text: "Bằng cách đăng ký, bạn đồng ý với ",
@@ -174,7 +170,6 @@ class SignUpScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const Spacer(),
-
               Center(
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 24.0),
@@ -184,7 +179,9 @@ class SignUpScreen extends StatelessWidget {
                       Text("Bạn đã có tài khoản chưa? ",
                           style: theme.textTheme.bodyMedium),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Get.toNamed(Routes.login);
+                        },
                         child: Text(
                           "Đăng nhập",
                           style: theme.textTheme.bodyMedium?.copyWith(
@@ -270,6 +267,6 @@ class SignUpScreen extends StatelessWidget {
       "Đăng ký thành công",
       snackPosition: SnackPosition.TOP,
     );
-    Get.offNamed('/login');
+    Get.offNamed(Routes.login);
   }
 }

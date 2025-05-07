@@ -8,94 +8,94 @@ class MyLearningScreen extends StatelessWidget {
   // Danh sách khoá học mô phỏng
   final List<MyLearningCourse> courses = const [
     MyLearningCourse(
-      title: "Python OOP : Object Oriented Programming in Python",
+      title: "Lập trình hướng đối tượng với Python",
       author: "Deepali Srivastava",
       imageUrl: "https://dummyimage.com/60",
-      actionText: "Start course",
+      actionText: "Bắt đầu học",
     ),
     MyLearningCourse(
-      title: "Machine Learning Code Crash Course",
+      title: "Khoá học cấp tốc về Machine Learning",
       author: "Naman Singhal",
       imageUrl: "https://dummyimage.com/60",
-      actionText: "Start course",
+      actionText: "Bắt đầu học",
     ),
     MyLearningCourse(
-      title: "Advanced Python: Real-World Programming Deep Dive (2025)",
+      title: "Python nâng cao: Lập trình thực tế chuyên sâu (2025)",
       author:
-          "Sai All | Technical Architect (6x AWS Certified), Marti Cs, AxOps ArchOps",
+          "Sai All | Kỹ sư trưởng (6x AWS Certified), Marti Cs, AxOps ArchOps",
       imageUrl: "https://dummyimage.com/60",
-      actionText: "Start course",
+      actionText: "Bắt đầu học",
     ),
     MyLearningCourse(
-      title: "Beginners Guide To Graphic Design Without Paid Software",
+      title:
+          "Hướng dẫn thiết kế đồ họa cho người mới, không cần phần mềm trả phí",
       author: "Greg Gottfried",
       imageUrl: "https://dummyimage.com/60",
-      actionText: "Start course",
+      actionText: "Bắt đầu học",
     ),
     MyLearningCourse(
-      title: "Introduction to iOS 11 Development: Swift 4 and Xcode 9",
+      title: "Nhập môn lập trình iOS 11 với Swift 4 và Xcode 9",
       author: "Max Codes, The Codex",
       imageUrl: "https://dummyimage.com/60",
-      actionText: "Start course",
+      actionText: "Bắt đầu học",
     ),
     MyLearningCourse(
-      title: "Multimedia Journalism",
+      title: "Báo chí đa phương tiện",
       author: "Climate Tracker",
       imageUrl: "https://dummyimage.com/60",
-      actionText: "Start course",
+      actionText: "Bắt đầu học",
     ),
     MyLearningCourse(
-      title: "155 Years of Copywriting Insights Taught In 1.5 Hour Course!",
+      title: "155 năm tinh hoa Copywriting chỉ trong 1.5 giờ học!",
       author: "Eric John Campbell",
       imageUrl: "https://dummyimage.com/60",
-      actionText: "Start course",
+      actionText: "Bắt đầu học",
     ),
     MyLearningCourse(
-      title: "Secret Sauce of Great Presentations",
+      title: "Bí quyết tạo nên bài thuyết trình tuyệt vời",
       author: "Alex Harris",
       imageUrl: "https://dummyimage.com/60",
-      actionText: "Start course",
+      actionText: "Bắt đầu học",
     ),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // AppBar với tiêu đề "My learning"
+      // AppBar với tiêu đề tiếng Việt
       appBar: AppBar(
-        title: const Text("My learning"),
+        title: const Text("Khóa học của tôi"),
         centerTitle: true,
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
             onPressed: () {
-              // TODO: Xử lý search
+              // TODO: Xử lý tìm kiếm
             },
           ),
           IconButton(
             icon: const Icon(Icons.filter_list),
             onPressed: () {
-              // TODO: Xử lý filter
+              // TODO: Xử lý lọc danh sách
             },
           ),
         ],
       ),
-      // Màu nền lấy từ theme (Dark/Light)
+
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+
       body: ListView.builder(
         itemCount: courses.length,
         itemBuilder: (context, index) {
           final item = courses[index];
           return ListTile(
-            // Ảnh đại diện khoá học
             leading: Image.network(
               item.imageUrl,
               fit: BoxFit.cover,
               width: 60,
               height: 60,
             ),
-            // Tiêu đề (tên khoá học)
             title: Text(
               item.title,
               overflow: TextOverflow.ellipsis,
@@ -104,14 +104,12 @@ class MyLearningScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
             ),
-            // Tác giả
             subtitle: Text(
               item.author,
               style: Theme.of(context).textTheme.bodySmall,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
-            // Nút "Start course"
             trailing: Text(
               item.actionText,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -120,7 +118,7 @@ class MyLearningScreen extends StatelessWidget {
                   ),
             ),
             onTap: () {
-              // TODO: Xử lý khi chọn khoá học
+              // Điều hướng đến màn chi tiết khoá học (giả định)
               Get.toNamed("${Routes.detailCourse}/0123");
             },
           );
@@ -130,9 +128,7 @@ class MyLearningScreen extends StatelessWidget {
   }
 }
 
-// ===================================================================
 // MODEL: MyLearningCourse
-// ===================================================================
 class MyLearningCourse {
   final String title;
   final String author;
