@@ -2,7 +2,6 @@
 import 'package:course_app/module/signup/controller/sign_up_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sub_project/common/widget/text_field/common_textfield_widget.dart';
 
 import '../../../navigation/routes.dart';
 
@@ -40,25 +39,20 @@ class SignUpScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          _buildIcon(
-                              Icons.web, BorderRadius.circular(8), theme),
+                          _buildIcon(Icons.web, BorderRadius.circular(8), theme),
                           const SizedBox(width: 48),
-                          _buildIcon(Icons.email_outlined,
-                              BorderRadius.circular(8), theme),
+                          _buildIcon(Icons.email_outlined, BorderRadius.circular(8), theme),
                         ],
                       ),
                       const SizedBox(height: 16),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          _buildIcon(
-                              Icons.code, BorderRadius.circular(50), theme),
+                          _buildIcon(Icons.code, BorderRadius.circular(50), theme),
                           const SizedBox(width: 48),
-                          _buildIcon(Icons.camera_alt_outlined,
-                              BorderRadius.zero, theme),
+                          _buildIcon(Icons.camera_alt_outlined, BorderRadius.zero, theme),
                           const SizedBox(width: 48),
-                          _buildIcon(
-                              Icons.language, BorderRadius.circular(50), theme),
+                          _buildIcon(Icons.language, BorderRadius.circular(50), theme),
                         ],
                       ),
                     ],
@@ -69,23 +63,22 @@ class SignUpScreen extends StatelessWidget {
               Text(
                 "Đăng ký để tận dụng tối đa việc học của bạn",
                 textAlign: TextAlign.center,
-                style: theme.textTheme.headlineSmall
-                    ?.copyWith(fontWeight: FontWeight.bold),
+                style: theme.textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 12),
-              CommonTextfieldWidget(
-                  label: "Email", controller: controller.emailController),
-              const SizedBox(height: 8),
-              Obx(() => CommonTextfieldWidget(
-                    label: "Mật khẩu",
-                    controller: controller.passwordController,
-                    obscureText: controller.isPasswordHidden.value,
-                    textInputAction: TextInputAction.done,
-                    showToggleObscureIcon: true,
-                    onSuffixTap: () {
-                      controller.isPasswordHidden.toggle();
-                    },
-                  )),
+              // CommonTextfieldWidget(
+              //     label: "Email", controller: controller.emailController),
+              // const SizedBox(height: 8),
+              // Obx(() => CommonTextfieldWidget(
+              //       label: "Mật khẩu",
+              //       controller: controller.passwordController,
+              //       obscureText: controller.isPasswordHidden.value,
+              //       textInputAction: TextInputAction.done,
+              //       showToggleObscureIcon: true,
+              //       onSuffixTap: () {
+              //         controller.isPasswordHidden.toggle();
+              //       },
+              // )),
               const SizedBox(height: 16),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,8 +88,7 @@ class SignUpScreen extends StatelessWidget {
                         width: 24,
                         child: Checkbox(
                           value: controller.receiveOffers.value,
-                          onChanged: (value) =>
-                              controller.receiveOffers.value = value ?? false,
+                          onChanged: (value) => controller.receiveOffers.value = value ?? false,
                         ),
                       )),
                   const SizedBox(width: 8),
@@ -126,8 +118,7 @@ class SignUpScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 24),
-              Text("Các tùy chọn đăng ký khác",
-                  style: theme.textTheme.bodyMedium),
+              Text("Các tùy chọn đăng ký khác", style: theme.textTheme.bodyMedium),
               const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -176,8 +167,7 @@ class SignUpScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Bạn đã có tài khoản chưa? ",
-                          style: theme.textTheme.bodyMedium),
+                      Text("Bạn đã có tài khoản chưa? ", style: theme.textTheme.bodyMedium),
                       GestureDetector(
                         onTap: () {
                           Get.toNamed(Routes.login);
@@ -223,8 +213,7 @@ class SignUpScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildLoginOption(String iconPath, VoidCallback onTap, ThemeData theme,
-      {Color? color}) {
+  Widget _buildLoginOption(String iconPath, VoidCallback onTap, ThemeData theme, {Color? color}) {
     return GestureDetector(
       onTap: onTap,
       child: Container(

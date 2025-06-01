@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sub_project/common/widget/alert_dialog/alert_dialog_base.dart';
 
 import '../../../navigation/routes.dart';
 import '../../theme/controller/theme_controller.dart';
@@ -114,20 +113,20 @@ class AccountScreen extends StatelessWidget {
                   title: Center(
                     child: InkWell(
                       onTap: () {
-                        AlertDialogBase.showCommonAlertDialog(
-                          context,
-                          title: "Đăng xuất",
-                          content: "Bạn có chắc chắn muốn đăng xuất không?",
-                          confirmText: "Đăng xuất",
-                          cancelText: "Hủy",
-                          onCancel: () {
-                            Get.back();
-                          },
-                          onConfirm: () {
-                            accountController.logout();
-                            Get.offAllNamed(Routes.login);
-                          },
-                        );
+                        // AlertDialogBase.showCommonAlertDialog(
+                        //   context,
+                        //   title: "Đăng xuất",
+                        //   content: "Bạn có chắc chắn muốn đăng xuất không?",
+                        //   confirmText: "Đăng xuất",
+                        //   cancelText: "Hủy",
+                        //   onCancel: () {
+                        //     Get.back();
+                        //   },
+                        //   onConfirm: () {
+                        //     accountController.logout();
+                        //     Get.offAllNamed(Routes.login);
+                        //   },
+                        // );
                       },
                       child: Text(
                         "Đăng xuất",

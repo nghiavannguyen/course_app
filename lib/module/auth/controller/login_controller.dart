@@ -33,7 +33,7 @@ class LoginController extends GetxController {
         await sl<AppHive>().saveData('user_id', data['id']);
         await sl<AppHive>().saveData('access_token', data['access_token']);
 
-        Logger.log(runtimeType, "✅ Đã lưu user_id: ${data['id']}");
+        // Logger.log(runtimeType, "✅ Đã lưu user_id: ${data['id']}");
 
         return Right(true);
       } else {

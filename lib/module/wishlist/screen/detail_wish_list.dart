@@ -1,7 +1,6 @@
 // lib/module/course_detail/screen/wishlist_detail_screen.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sub_project/common/widget/appbar/common_appbar.dart';
 
 import '../controller/wish_list_detail_controller.dart';
 import 'widget/build_star_widget.dart';
@@ -16,8 +15,8 @@ class WishListDetailScreen extends GetView<WishListDetailController> {
     return Obx(() {
       if (controller.isLoading.value) {
         return Scaffold(
-          appBar: CommonAppBar(
-            title: 'Loading...',
+          appBar: AppBar(
+            title: Text('Loading...'),
           ),
           body: const Center(child: CircularProgressIndicator()),
         );
@@ -26,7 +25,7 @@ class WishListDetailScreen extends GetView<WishListDetailController> {
       final wishListDetailcontroller = controller.course.value;
       if (wishListDetailcontroller == null || controller.error.value != null) {
         return Scaffold(
-          appBar: CommonAppBar(title: 'Not Found'),
+          appBar: AppBar(title: Text('Not Found')),
           body: const Center(child: Text('Khóa học không tồn tại')),
         );
       }

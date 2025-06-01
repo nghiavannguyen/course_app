@@ -5,7 +5,6 @@ import 'package:either_dart/either.dart';
 
 import '../../../core/di/service_locator.dart';
 import '../../../core/network/dio_client.dart';
-import 'package:sub_project/core/util/helper/logger.dart';
 
 class RegisterResult {
   final bool isSuccess;
@@ -72,7 +71,6 @@ class SignUpController extends GetxController {
 
       if (e.type == DioExceptionType.badResponse) {
         final code = e.response?.statusCode;
-        Logger.log(runtimeType, "❌ API Error $code: ${e.response?.data}");
 
         if (code == 400 || code == 409) {
           return Left("Email đã được sử dụng. Vui lòng dùng email khác.");
@@ -83,7 +81,6 @@ class SignUpController extends GetxController {
 
       return Left("Lỗi hệ thống không xác định");
     } catch (e) {
-      Logger.log(runtimeType, "❗ Exception: $e");
       return Left("Đã xảy ra lỗi, vui lòng thử lại sau");
     } finally {
       isLoading.value = false;

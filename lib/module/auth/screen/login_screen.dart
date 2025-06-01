@@ -87,24 +87,24 @@ class LoginScreen extends GetView<LoginController> {
               const SizedBox(height: 48),
 
               // Trường Email
-              CommonTextfieldWidget(
-                label: "Email",
-                controller: controller.emailController,
-              ),
+              // CommonTextfieldWidget(
+              //   label: "Email",
+              //   controller: controller.emailController,
+              // ),
 
-              const SizedBox(height: 16),
+              // const SizedBox(height: 16),
 
-              // Trường mật khẩu
-              Obx(() => CommonTextfieldWidget(
-                    label: "Mật khẩu",
-                    controller: controller.passwordController,
-                    obscureText: controller.isPasswordHidden.value,
-                    textInputAction: TextInputAction.done,
-                    showToggleObscureIcon: true,
-                    onSuffixTap: () {
-                      controller.isPasswordHidden.toggle();
-                    },
-                  )),
+              // // Trường mật khẩu
+              // Obx(() => CommonTextfieldWidget(
+              //       label: "Mật khẩu",
+              //       controller: controller.passwordController,
+              //       obscureText: controller.isPasswordHidden.value,
+              //       textInputAction: TextInputAction.done,
+              //       showToggleObscureIcon: true,
+              //       onSuffixTap: () {
+              //         controller.isPasswordHidden.toggle();
+              //       },
+              //     )),
 
               const SizedBox(height: 24),
 
