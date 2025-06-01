@@ -1,7 +1,6 @@
 import 'package:course_app/module/course/widget/youtube_video_player.dart';
 import 'package:course_app/module/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:sub_project/core/constant/constant_export.dart';
 
 import '../fakedata/fake_data.dart';
 
@@ -243,7 +242,7 @@ class CourseScreen extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).canvasColor,
-          borderRadius: BorderRadius.circular(DiMens.cardRadius8),
+          borderRadius: BorderRadius.circular(8),
         ),
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -585,7 +584,7 @@ class CourseScreen extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).canvasColor,
-          borderRadius: BorderRadius.circular(DiMens.cardRadius8),
+          borderRadius: BorderRadius.circular(8),
         ),
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -731,7 +730,7 @@ class CourseScreen extends StatelessWidget {
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: Theme.of(context).canvasColor,
-          borderRadius: BorderRadius.circular(DiMens.cardRadius8),
+          borderRadius: BorderRadius.circular(8),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,

@@ -1,13 +1,8 @@
-import 'dart:io';
-
-import 'package:course_app/core/di/service_locator.dart';
-import 'package:course_app/core/network/dio_client.dart';
 import 'package:course_app/module/auth/controller/login_controller.dart';
 import 'package:course_app/navigation/routes.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sub_project/core/util/helper/logger.dart';
+import 'package:logger/logger.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -100,13 +95,13 @@ class LoginScreen extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () async {
                       // Get.toNamed(Routes.root);
-                      Logger.log(runtimeType, "LOG ABC");
+                      Logger().d("LOG ABC");
 
                       final result = await loginController.login("ad@gmail.com", "nghia1");
                       result.fold(
                         (error) {
                           // Handle error
-                          Logger.log(runtimeType, "Error: $error");
+                          Logger().d("Error: $error");
                           Get.showSnackbar(
                             GetSnackBar(
                               title: 'Thông báo',

@@ -3,7 +3,7 @@ import 'package:course_app/core/network/dio_client.dart';
 import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
 import 'package:get/get.dart';
-import 'package:sub_project/core/util/helper/logger.dart';
+import 'package:logger/logger.dart';
 
 class LoginController extends GetxController {
   var isLoading = false.obs;
@@ -29,7 +29,7 @@ class LoginController extends GetxController {
 
       if (e.type == DioExceptionType.badResponse) {
         final code = e.response?.statusCode;
-        Logger.log(runtimeType, "❌ API Error $code: ${e.response?.data}");
+        Logger().d("❌ API Error $code: ${e.response?.data}");
 
         if (code == 400 || code == 401) {
           return Left("Sai tài khoản hoặc mật khẩu");
@@ -40,7 +40,7 @@ class LoginController extends GetxController {
 
       return Left("Lỗi hệ thống không xác định");
     } catch (e) {
-      Logger.log(runtimeType, "❗ Exception: $e");
+      Logger().d("❗ Exception: $e");
       return Left("Đã xảy ra lỗi, vui lòng thử lại sau");
     } finally {
       isLoading.value = false;

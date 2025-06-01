@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sub_project/common/widget/appbar/common_appbar.dart';
 
 class WishListScreen extends StatelessWidget {
   const WishListScreen({super.key});
@@ -43,10 +42,15 @@ class WishListScreen extends StatelessWidget {
     ];
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
-      appBar: CommonAppBar(
-        title: 'Wish List',
+      appBar: AppBar(
+        title: Text('Wish List'),
         centerTitle: true,
-        isShowLeading: false,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: ListView.builder(
         padding: EdgeInsets.all(16),
@@ -75,16 +79,15 @@ class WishListScreen extends StatelessWidget {
                       Text(
                         course['title'],
                         style: textTheme.titleMedium?.copyWith(
-                            color: theme.colorScheme.onSurface,
-                            fontWeight: FontWeight.bold),
+                            color: theme.colorScheme.onSurface, fontWeight: FontWeight.bold),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
                       SizedBox(height: 4),
                       Text(
                         course['author'],
-                        style: textTheme.bodyMedium?.copyWith(
-                            color: theme.colorScheme.onSurfaceVariant),
+                        style: textTheme.bodyMedium
+                            ?.copyWith(color: theme.colorScheme.onSurfaceVariant),
                       ),
                       SizedBox(height: 4),
                       Row(
@@ -94,13 +97,12 @@ class WishListScreen extends StatelessWidget {
                           Text(
                             '${course['rating']} ',
                             style: textTheme.bodyLarge?.copyWith(
-                                color: theme.colorScheme.onSurface,
-                                fontWeight: FontWeight.bold),
+                                color: theme.colorScheme.onSurface, fontWeight: FontWeight.bold),
                           ),
                           Text(
                             '(${course['reviews']})',
-                            style: textTheme.bodyMedium?.copyWith(
-                                color: theme.colorScheme.onSurfaceVariant),
+                            style: textTheme.bodyMedium
+                                ?.copyWith(color: theme.colorScheme.onSurfaceVariant),
                           ),
                         ],
                       ),
@@ -108,13 +110,11 @@ class WishListScreen extends StatelessWidget {
                       Text(
                         course['price'],
                         style: textTheme.titleMedium?.copyWith(
-                            color: theme.colorScheme.onSurface,
-                            fontWeight: FontWeight.bold),
+                            color: theme.colorScheme.onSurface, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(height: 4),
                       Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(
                           color: course['tagColor'],
                           borderRadius: BorderRadius.circular(4),
@@ -122,8 +122,7 @@ class WishListScreen extends StatelessWidget {
                         child: Text(
                           course['tag'],
                           style: textTheme.bodyMedium?.copyWith(
-                              color: theme.colorScheme.onPrimary,
-                              fontWeight: FontWeight.bold),
+                              color: theme.colorScheme.onPrimary, fontWeight: FontWeight.bold),
                         ),
                       ),
                     ],

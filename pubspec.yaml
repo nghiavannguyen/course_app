@@ -10,8 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  sub_project:
-    path: shared
+  # sub_project:
+  #   path: shared
 
   cupertino_icons: ^1.0.8
   get: ^4.7.2

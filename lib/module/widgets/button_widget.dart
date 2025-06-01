@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sub_project/common/widget/button/button_base.dart';
 
 class ButtonWidget extends StatelessWidget {
   const ButtonWidget({
@@ -26,24 +25,19 @@ class ButtonWidget extends StatelessWidget {
     return SizedBox(
       height: 48,
       width: double.infinity,
-      child: ButtonBase.base(
-          shape: shape,
-          elevation: 0,
-          isLoading: isLoading,
-          // textStyle: textStyle ??
-          //     Theme.of(context).textTheme.titleSmall?.copyWith(
-          //           fontWeight: FontWeight.bold,
-          //         ),
-          child: Text(
-            text ?? '',
-            style: Theme.of(context)
-                .textTheme
-                .titleSmall
-                ?.copyWith(fontWeight: FontWeight.bold),
-          ),
-          onPressed: onPressed,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
           backgroundColor: backgroundColor ?? Theme.of(context).primaryColor,
-          borderRadius: borderRadius ?? 48),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(borderRadius ?? 48),
+          ),
+        ),
+        child: Text(
+          text ?? '',
+          style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
+        ),
+      ),
     );
   }
 }
