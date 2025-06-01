@@ -1,0 +1,33 @@
+name: course_app
+
+packages:
+  - packages/**
+
+command:
+  bootstrap:
+    usePubspecOverrides: true
+
+scripts:
+  analyze:
+    run: melos exec -- "flutter analyze"
+    description: Run Flutter analyze on all packages
+
+  format:
+    run: melos exec -- "dart format ."
+    description: Format all Dart files
+
+  test:
+    run: melos exec -- "flutter test"
+    description: Run tests on all packages
+
+  clean:
+    run: melos exec -- "flutter clean"
+    description: Clean all packages
+
+  pub-get:
+    run: melos exec -- "flutter pub get"
+    description: Get dependencies for all packages
+
+  build-runner:
+    run: melos exec -- "flutter pub run build_runner build --delete-conflicting-outputs"
+    description: Run build_runner on all packages

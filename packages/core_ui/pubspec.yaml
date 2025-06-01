@@ -1,0 +1,28 @@
+name: core_ui
+description: "A new Flutter package project."
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: ^3.6.1
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  another_flushbar: ^1.12.30
+  url_launcher: ^6.3.1
+  flutter_widget_from_html: ^0.16.0
+  flutter_cache_manager: ^3.4.1
+  cached_network_image: ^3.4.1
+  shimmer: ^3.0.0
+  smooth_page_indicator: ^1.2.1
+  syncfusion_flutter_datepicker: ^29.1.38
+  dropdown_button2: ^2.3.9
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:

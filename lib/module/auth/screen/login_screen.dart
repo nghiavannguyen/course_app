@@ -1,3 +1,4 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:course_app/module/auth/controller/login_controller.dart';
 import 'package:course_app/navigation/routes.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,15 @@ class LoginScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 16),
+              AppButton(
+                onPressed: () {
+                  
+                },
+                padding: EdgeInsets.symmetric(vertical: 16),
+                isFullWidth: true,
+                state: AppButtonState.loading,
+                child: Text("Log in"),
+              ),
               // Close button
               IconButton(
                 icon: Icon(Icons.close, color: theme.textTheme.headlineMedium?.color, size: 32),
