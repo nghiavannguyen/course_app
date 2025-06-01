@@ -1,9 +1,14 @@
+import 'package:course_app/module/account/binding/account_binding.dart';
+import 'package:course_app/module/account/screen/account_screen.dart';
 import 'package:course_app/module/auth/binding/login_binding.dart';
 import 'package:course_app/module/course/binding/detail_course_binding.dart';
 import 'package:course_app/module/course/screen/detail_course_screen.dart';
 import 'package:course_app/module/search/binding/suggestion_search_binding.dart';
 import 'package:course_app/module/search/screen/result_search_screen.dart';
 import 'package:course_app/module/search/screen/suggestion_search_screen.dart';
+import 'package:course_app/module/signup/binding/sign_up_binding.dart';
+import 'package:course_app/module/wishlist/binding/wish_list_binding.dart';
+import 'package:course_app/module/wishlist/screen/detail_wish_list.dart';
 import 'package:course_app/navigation/routes.dart';
 import 'package:course_app/module/auth/screen/login_screen.dart';
 import 'package:course_app/module/course/binding/course_binding.dart';
@@ -12,12 +17,25 @@ import 'package:course_app/module/search/screen/search_screen.dart';
 import 'package:course_app/root.dart';
 import 'package:get/get.dart';
 
+import '../module/signup/screen/signup_screen.dart';
+import '../module/wishlist/binding/wish_list_detail_binding.dart';
+
 class AppPage {
   static List<GetPage> pages = [
-    GetPage(name: Routes.login, page: () => const LoginScreen(), bindings: [LoginBinding()]),
+    GetPage(
+        name: Routes.login,
+        page: () => const LoginScreen(),
+        bindings: [LoginBinding()]),
     GetPage(
       name: Routes.root,
       page: () => const RootApp(),
+      bindings: [
+        AccountBinding(),
+        CourseBinding(),
+        DetailCourseBinding(),
+        SuggestionSearchBinding(),
+        WishListBinding()
+      ],
     ),
     GetPage(
       name: Routes.search,
@@ -29,14 +47,30 @@ class AppPage {
       binding: SuggestionSearchBinding(),
     ),
     GetPage(
+      name: Routes.signUp,
+      page: () => const SignUpScreen(),
+      binding: SignUpBinding(),
+    ),
+    GetPage(
       name: Routes.resultSearch,
       page: () => const ResultSearchScreen(),
     ),
     GetPage(
-        name: '${Routes.course}/:id', page: () => const CourseScreen(), binding: CourseBinding()),
+        name: '${Routes.course}/:id',
+        page: () => const CourseScreen(),
+        binding: CourseBinding()),
     GetPage(
         name: "${Routes.detailCourse}/:id",
         page: () => DetailCourseScreen(),
-        binding: DetailCourseBinding())
+        binding: DetailCourseBinding()),
+    GetPage(
+      name: Routes.account,
+      page: () => const AccountScreen(),
+    ),
+    GetPage(
+      name: Routes.wishListDetail,
+      page: () => const WishListDetailScreen(),
+      binding: WishListDetailBinding(),
+    ),
   ];
 }

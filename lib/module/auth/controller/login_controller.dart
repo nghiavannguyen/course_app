@@ -2,13 +2,23 @@ import 'package:course_app/core/di/service_locator.dart';
 import 'package:course_app/core/network/dio_client.dart';
 import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
+
+import '../../../core/storage/app_hive.dart';
 
 class LoginController extends GetxController {
   var isLoading = false.obs;
 
+  final passwordController = TextEditingController();
+  final emailController = TextEditingController();
+  final isPasswordHidden = true.obs;
+  final isRememberMe = true.obs;
+
   Future<Either<String, bool>> login(String username, String password) async {
+    final username = emailController.text.trim();
+    final password = passwordController.text.trim();
     isLoading.value = true;
 
     try {
@@ -18,6 +28,13 @@ class LoginController extends GetxController {
       );
 
       if (res.statusCode == 200 || res.statusCode == 201) {
+        final data = res.data['data'];
+
+        await sl<AppHive>().saveData('user_id', data['id']);
+        await sl<AppHive>().saveData('access_token', data['access_token']);
+
+        Logger.log(runtimeType, "✅ Đã lưu user_id: ${data['id']}");
+
         return Right(true);
       } else {
         return Left("Đã xảy ra lỗi không xác định");

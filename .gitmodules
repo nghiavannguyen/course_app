@@ -1,4 +1,0 @@
-[submodule "shared"]
-	path = shared
-	url = https://github.com/vannghia234/sub_module.git
-	branch = main
