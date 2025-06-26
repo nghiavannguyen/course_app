@@ -1,3 +1,4 @@
+import 'package:core_theme/core_theme.dart';
 import 'package:course_app/navigation/routes.dart';
 import 'package:course_app/module/home/components/category_chip.dart';
 import 'package:course_app/module/home/components/course_card.dart';
@@ -145,7 +146,8 @@ class HomeScreen extends StatelessWidget {
                 },
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: AppDimens.spacing6),
                 child: Wrap(
                   spacing: 8,
                   runSpacing: 4,

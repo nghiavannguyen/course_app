@@ -149,7 +149,8 @@ class AppButton extends StatelessWidget {
       loadingColor: loadingColor ?? this.loadingColor,
       errorColor: errorColor ?? this.errorColor,
       disabledColor: disabledColor ?? this.disabledColor,
-      disabledForegroundColor: disabledForegroundColor ?? this.disabledForegroundColor,
+      disabledForegroundColor:
+          disabledForegroundColor ?? this.disabledForegroundColor,
       style: style ?? this.style,
       child: child ?? this.child,
     );
