@@ -1,4 +1,5 @@
 // lib/module/course_detail/screen/wishlist_detail_screen.dart
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -95,6 +96,13 @@ class WishListDetailScreen extends GetView<WishListDetailController> {
                       child: const Text('Thêm vào danh sách mong ước'),
                     ),
                     const SizedBox(height: 16),
+
+                    // AppCupertinoPicker(
+                    //   initialItem: 6,
+                    //   backgroundColor: theme.colorScheme.surface,
+                    //   items: wishListDetailcontroller.whatYouLearn,
+                    //   onSelectedItemChanged: (value) {},
+                    // ),
                     Text('Những gì bạn sẽ học',
                         style: theme.textTheme.headlineSmall),
                     ...wishListDetailcontroller.whatYouLearn.map((s) => Padding(
