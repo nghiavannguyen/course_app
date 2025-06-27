@@ -1,5 +1,5 @@
 import 'package:core_theme/core_theme.dart';
-import 'package:course_app/navigation/routes.dart';
+import 'package:course_app/core/navigation/routes.dart';
 import 'package:course_app/module/home/components/category_chip.dart';
 import 'package:course_app/module/home/components/course_card.dart';
 import 'package:course_app/module/home/components/section_title.dart';

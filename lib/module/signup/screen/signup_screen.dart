@@ -1,7 +1,7 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:core_theme/core_theme.dart';
 import 'package:course_app/module/signup/controller/sign_up_controller.dart';
-import 'package:course_app/navigation/routes.dart';
+import 'package:course_app/core/navigation/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

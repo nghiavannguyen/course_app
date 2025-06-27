@@ -2,7 +2,7 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../navigation/routes.dart';
+import '../../../core/navigation/routes.dart';
 import '../../theme/controller/theme_controller.dart';
 import '../controller/account_controller.dart';
 

@@ -31,8 +31,11 @@ class $AssetsImagesGen {
   AssetGenImage get image020240731T044400455Z =>
       const AssetGenImage('assets/images/image-0-2024-07-31T04_44_00.455Z.png');
 
+  /// File path: assets/images/logo.png
+  AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [image020240731T044400455Z];
+  List<AssetGenImage> get values => [image020240731T044400455Z, logo];
 }
 
 class Assets {

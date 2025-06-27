@@ -1,18 +1,18 @@
 import 'package:core_theme/core_theme.dart';
 import 'package:course_app/core/di/service_locator.dart';
-import 'package:course_app/navigation/app_page.dart';
-import 'package:course_app/navigation/routes.dart';
+import 'package:course_app/core/navigation/app_page.dart';
+import 'package:course_app/core/navigation/routes.dart';
+import 'package:course_app/core/presentation/orientation_config.dart';
+import 'package:course_app/core/presentation/system_ui_overlay_config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+
 import 'module/theme/controller/theme_controller.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
+  setOrientations();
   setupLocator();
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
-
-  runApp(const MyApp());
+  runApp(buildSystemUiOverlay(const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -25,8 +25,7 @@ class MyApp extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
-        if (!currentFocus.hasPrimaryFocus &&
-            currentFocus.focusedChild != null) {
+        if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
           FocusManager.instance.primaryFocus!.unfocus();
         }
       },

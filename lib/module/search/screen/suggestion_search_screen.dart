@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controller/suggestion_search_controller.dart';
-import '../../../navigation/routes.dart';
+import '../../../core/navigation/routes.dart';
 
 class SuggestionSearchScreen extends GetView<SuggestionSearchController> {
   const SuggestionSearchScreen({super.key});

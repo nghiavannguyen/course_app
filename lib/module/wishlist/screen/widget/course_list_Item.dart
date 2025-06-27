@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../navigation/routes.dart';
+import '../../../../core/navigation/routes.dart';
 import '../../model/wish_list_model.dart';
 
 class CourseListItem extends StatelessWidget {
