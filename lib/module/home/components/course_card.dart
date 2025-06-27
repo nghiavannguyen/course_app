@@ -1,3 +1,4 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 import '../screen/home_screen.dart';
@@ -22,8 +23,8 @@ class CourseCard extends StatelessWidget {
           // Ảnh khóa học
           AspectRatio(
             aspectRatio: 16 / 9,
-            child: Image.network(
-              course.imageUrl,
+            child: AppImage(
+              imageUrl: course.imageUrl,
               fit: BoxFit.cover,
             ),
           ),

@@ -1,10 +1,10 @@
+import 'package:core_theme/core_theme.dart';
 import 'package:course_app/core/di/service_locator.dart';
 import 'package:course_app/navigation/app_page.dart';
 import 'package:course_app/navigation/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'core/config/app_theme.dart';
 import 'module/theme/controller/theme_controller.dart';
 
 void main() {
@@ -25,7 +25,8 @@ class MyApp extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
-        if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+        if (!currentFocus.hasPrimaryFocus &&
+            currentFocus.focusedChild != null) {
           FocusManager.instance.primaryFocus!.unfocus();
         }
       },

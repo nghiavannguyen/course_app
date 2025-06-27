@@ -1,9 +1,9 @@
 import 'package:core_ui/core_ui.dart';
+import 'package:core_theme/core_theme.dart';
 import 'package:course_app/module/auth/controller/login_controller.dart';
 import 'package:course_app/navigation/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 
 class LoginScreen extends GetView<LoginController> {
   const LoginScreen({super.key});
@@ -17,27 +17,11 @@ class LoginScreen extends GetView<LoginController> {
       backgroundColor: theme.scaffoldBackgroundColor,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          padding: const EdgeInsets.symmetric(horizontal: AppDimens.spacing6),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 16),
-              AppButton(
-                onPressed: () {},
-                padding: EdgeInsets.symmetric(vertical: 16),
-                isFullWidth: true,
-                state: AppButtonState.loading,
-                child: Text("Log in"),
-              ),
-              // Close button
-              IconButton(
-                icon: Icon(Icons.close, color: theme.textTheme.headlineMedium?.color, size: 32),
-                onPressed: () {},
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints(),
-              ),
-
-              // Khu vực icon minh họa
+              const SizedBox(height: AppDimens.spacing4),
               Expanded(
                 flex: 3,
                 child: Center(
@@ -47,28 +31,31 @@ class LoginScreen extends GetView<LoginController> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          _buildIcon(Icons.web, BorderRadius.circular(8), theme),
-                          const SizedBox(width: 48),
-                          _buildIcon(Icons.email_outlined, BorderRadius.circular(8), theme),
+                          _buildIcon(Icons.web,
+                              BorderRadius.circular(AppDimens.radius8), theme),
+                          const SizedBox(width: AppDimens.spacing12),
+                          _buildIcon(Icons.email_outlined,
+                              BorderRadius.circular(AppDimens.radius8), theme),
                         ],
                       ),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: AppDimens.spacing6),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          _buildIcon(Icons.code, BorderRadius.circular(50), theme),
-                          const SizedBox(width: 48),
-                          _buildIcon(Icons.camera_alt_outlined, BorderRadius.zero, theme),
-                          const SizedBox(width: 48),
-                          _buildIcon(Icons.language, BorderRadius.circular(50), theme),
+                          _buildIcon(Icons.code,
+                              BorderRadius.circular(AppDimens.radius48), theme),
+                          const SizedBox(width: AppDimens.spacing12),
+                          _buildIcon(Icons.camera_alt_outlined,
+                              BorderRadius.zero, theme),
+                          const SizedBox(width: AppDimens.spacing12),
+                          _buildIcon(Icons.language,
+                              BorderRadius.circular(AppDimens.radius48), theme),
                         ],
                       ),
                     ],
                   ),
                 ),
               ),
-
-              // Tiêu đề
               Center(
                 child: Text(
                   'Đăng nhập để tiếp tục hành trình học tập của bạn',
@@ -76,76 +63,83 @@ class LoginScreen extends GetView<LoginController> {
                   style: theme.textTheme.headlineMedium,
                 ),
               ),
-
-              const SizedBox(height: 48),
-
-              // Trường Email
-              // CommonTextfieldWidget(
-              //   label: "Email",
-              //   controller: controller.emailController,
-              // ),
-
-              // const SizedBox(height: 16),
-
-              // // Trường mật khẩu
-              // Obx(() => CommonTextfieldWidget(
-              //       label: "Mật khẩu",
-              //       controller: controller.passwordController,
-              //       obscureText: controller.isPasswordHidden.value,
-              //       textInputAction: TextInputAction.done,
-              //       showToggleObscureIcon: true,
-              //       onSuffixTap: () {
-              //         controller.isPasswordHidden.toggle();
-              //       },
-              //     )),
-
-              const SizedBox(height: 24),
-
-              // Nút đăng nhập
-              Obx(() {
-                return SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      // Get.toNamed(Routes.root);
-                      Logger().d("LOG ABC");
-
-                      final result = await controller.login(
-                        controller.emailController.text.trim(),
-                        controller.passwordController.text.trim(),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: theme.primaryColor,
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
+              const SizedBox(height: AppDimens.spacing12),
+              AppTextField(
+                controller: controller.emailController,
+                label: "Email",
+                prefixIcon: const Icon(Icons.email_outlined),
+                textInputAction: TextInputAction.next,
+              ),
+              const SizedBox(height: AppDimens.spacing4),
+              Obx(
+                () => AppTextField(
+                  controller: controller.passwordController,
+                  label: "Mật khẩu",
+                  prefixIcon: const Icon(Icons.lock_outline),
+                  textInputAction: TextInputAction.done,
+                  obscureText: controller.isPasswordHidden.value,
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      controller.isPasswordHidden.value
+                          ? Icons.visibility_off
+                          : Icons.visibility,
                     ),
-                    child: controller.isLoading.value
-                        ? CircularProgressIndicator.adaptive()
-                        : Text(
-                            'Đăng nhập',
-                            style: theme.textTheme.labelLarge?.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
+                    onPressed: () {
+                      controller.isPasswordHidden.toggle();
+                    },
                   ),
-                );
-              }),
+                ),
+              ),
+              const SizedBox(height: AppDimens.spacing6),
+              Obx(
+                () => AppButton(
+                  borderRadius: BorderRadius.circular(8),
 
-              const SizedBox(height: 24),
+                  backgroundColor: theme.colorScheme.primary,
 
-              // Tuỳ chọn khác
+                  // Giữ nguyên hàm xử lý khi nhấn nút
+
+                  onPressed: () {
+                    // Đây là nơi bạn sẽ gọi hàm login từ controller
+
+                    // final result = await controller.login(...);
+
+                    // ... xử lý kết quả
+
+                    // Tạm thời dùng điều hướng để demo
+
+                    Get.toNamed(Routes.root);
+                  },
+
+                  // Liên kết trạng thái của button với biến isLoading trong controller
+
+                  state: controller.isLoading.value
+                      ? AppButtonState.loading
+                      : AppButtonState.normal,
+
+                  // Sử dụng kiểu primary cho hành động chính
+
+                  type: AppButtonType.primary,
+
+                  // Để button chiếm toàn bộ chiều rộng
+
+                  isFullWidth: true,
+
+// Nội dung của button giờ đây chỉ cần là Text
+
+                  child: const Text('Đăng nhập'),
+                ),
+              ),
+              const SizedBox(height: AppDimens.spacing6),
               Center(
                 child: Column(
                   children: [
                     Text(
                       'Hoặc đăng nhập bằng',
-                      style: TextStyle(color: Colors.grey),
+                      style: theme.textTheme.bodySmall
+                          ?.copyWith(color: theme.colorScheme.onSurfaceVariant),
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: AppDimens.spacing4),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -154,25 +148,24 @@ class LoginScreen extends GetView<LoginController> {
                           () {},
                           theme,
                         ),
-                        const SizedBox(width: 24),
+                        const SizedBox(width: AppDimens.spacing6),
                         _buildLoginOption(
                           'assets/icons/apple-icon.png',
                           () {},
                           theme,
-                          color: theme.textTheme.bodyLarge?.color,
+                          color: theme.brightness == Brightness.dark
+                              ? Colors.white
+                              : Colors.black,
                         ),
                       ],
                     ),
                   ],
                 ),
               ),
-
               const Spacer(),
-
-              // Đăng ký nếu chưa có tài khoản
               Center(
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 24.0),
+                  padding: const EdgeInsets.only(bottom: AppDimens.spacing6),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -187,7 +180,7 @@ class LoginScreen extends GetView<LoginController> {
                         child: Text(
                           'Đăng ký',
                           style: theme.textTheme.bodyMedium?.copyWith(
-                            color: theme.primaryColor,
+                            color: theme.colorScheme.primary,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -196,16 +189,14 @@ class LoginScreen extends GetView<LoginController> {
                   ),
                 ),
               ),
-
-              // Đường kẻ dưới cùng
               Center(
                 child: Container(
-                  width: 100,
-                  height: 4,
-                  margin: const EdgeInsets.only(bottom: 16),
+                  width: 134,
+                  height: AppDimens.spacing1,
+                  margin: const EdgeInsets.only(bottom: AppDimens.spacing2),
                   decoration: BoxDecoration(
-                    color: Colors.grey,
-                    borderRadius: BorderRadius.circular(2),
+                    color: theme.colorScheme.onSurface,
+                    borderRadius: BorderRadius.circular(AppDimens.radius100),
                   ),
                 ),
               ),
@@ -218,21 +209,21 @@ class LoginScreen extends GetView<LoginController> {
 
   Widget _buildIcon(IconData icon, BorderRadius borderRadius, ThemeData theme) {
     return Container(
-      width: 50,
-      height: 50,
+      width: AppDimens.avatarSizeXLarge,
+      height: AppDimens.avatarSizeXLarge,
       decoration: BoxDecoration(
         color: theme.scaffoldBackgroundColor,
         borderRadius: borderRadius,
         border: Border.all(
-          color: theme.textTheme.headlineMedium?.color ?? Colors.white,
-          width: 1,
+          color: theme.colorScheme.onSurface,
+          width: AppDimens.dividerThicknessMedium,
         ),
       ),
       child: Center(
         child: Icon(
           icon,
-          color: theme.textTheme.headlineMedium?.color,
-          size: 24,
+          color: theme.colorScheme.onSurface,
+          size: AppDimens.icon24,
         ),
       ),
     );
@@ -247,24 +238,47 @@ class LoginScreen extends GetView<LoginController> {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 50,
-        height: 50,
+        width: AppDimens.avatarSizeXLarge,
+        height: AppDimens.avatarSizeXLarge,
+        padding: const EdgeInsets.all(AppDimens.spacing2),
         decoration: BoxDecoration(
           border: Border.all(
-            color: theme.textTheme.headlineMedium?.color ?? Colors.white,
-            width: 1,
+            color: theme.colorScheme.outline,
+            width: AppDimens.dividerThicknessMedium,
           ),
-          borderRadius: BorderRadius.circular(4),
+          borderRadius: BorderRadius.circular(AppDimens.radius8),
         ),
         child: Center(
           child: Image.asset(
             iconPath,
             color: color,
-            width: 24,
-            height: 24,
+            width: AppDimens.icon32,
+            height: AppDimens.icon32,
           ),
         ),
       ),
+    );
+  }
+
+  void _handleLogin(LoginController controller) async {
+    final result = await controller.login(
+      controller.emailController.text,
+      controller.passwordController.text,
+    );
+
+    result.fold(
+      (error) {
+        Get.snackbar(
+          'Đăng nhập thất bại',
+          error,
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      },
+      (success) {
+        Get.offAllNamed(Routes.root);
+      },
     );
   }
 }
