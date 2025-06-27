@@ -1,5 +1,8 @@
+import 'package:core_ui/core_ui.dart';
+import 'package:core_utils/core_utils.dart';
 import 'package:course_app/module/widgets/search_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/context_extensions.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -57,10 +60,9 @@ class SearchScreen extends StatelessWidget {
                       (tag) => Chip(
                         visualDensity: VisualDensity.compact,
                         labelPadding: EdgeInsets.zero,
-                        label: Text(tag, style: Theme.of(context).textTheme.bodySmall),
+                        label: Text(tag, style: context.bodySmall),
                         // backgroundColor tùy theo theme
-                        backgroundColor: Theme.of(context).chipTheme.backgroundColor ??
-                            Theme.of(context).canvasColor,
+                        backgroundColor: context.background,
                       ),
                     )
                     .toList(),
@@ -72,6 +74,14 @@ class SearchScreen extends StatelessWidget {
                 children: categories
                     .map(
                       (cat) => ListTile(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        onTap: () {
+                          // TODO: Chuyển sang trang chi tiết danh mục
+                          print(cat);
+                          AppToast.show(cat, type: ToastType.success, context: context);
+                        },
                         contentPadding: EdgeInsets.zero,
                         title: Text(
                           cat,
@@ -79,11 +89,8 @@ class SearchScreen extends StatelessWidget {
                         ),
                         trailing: Icon(
                           Icons.chevron_right,
-                          color: Theme.of(context).iconTheme.color,
+                          color: context.iconColor,
                         ),
-                        onTap: () {
-                          // TODO: Chuyển sang trang chi tiết danh mục
-                        },
                       ),
                     )
                     .toList(),

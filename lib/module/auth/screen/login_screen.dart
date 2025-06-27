@@ -257,6 +257,7 @@ class LoginScreen extends GetView<LoginController> {
       controller.emailController.text,
       controller.passwordController.text,
     );
+    
 
     // result.fold(
     //   (error) {

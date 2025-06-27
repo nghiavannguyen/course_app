@@ -19,6 +19,7 @@ dependencies:
   smooth_page_indicator: ^1.2.1
   syncfusion_flutter_datepicker: ^29.1.38
   dropdown_button2: ^2.3.9
+  lucide_icons: ^0.257.0
 
 dev_dependencies:
   flutter_test:
