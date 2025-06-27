@@ -1,3 +1,5 @@
+import 'package:core_utils/core_utils.dart';
+import 'package:course_app/common/ui/app_app_bar.dart';
 import 'package:course_app/core/navigation/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,14 +23,12 @@ class MyLearningScreen extends StatelessWidget {
     ),
     MyLearningCourse(
       title: "Python nâng cao: Lập trình thực tế chuyên sâu (2025)",
-      author:
-          "Sai All | Kỹ sư trưởng (6x AWS Certified), Marti Cs, AxOps ArchOps",
+      author: "Sai All | Kỹ sư trưởng (6x AWS Certified), Marti Cs, AxOps ArchOps",
       imageUrl: "https://dummyimage.com/60",
       actionText: "Bắt đầu học",
     ),
     MyLearningCourse(
-      title:
-          "Hướng dẫn thiết kế đồ họa cho người mới, không cần phần mềm trả phí",
+      title: "Hướng dẫn thiết kế đồ họa cho người mới, không cần phần mềm trả phí",
       author: "Greg Gottfried",
       imageUrl: "https://dummyimage.com/60",
       actionText: "Bắt đầu học",
@@ -63,10 +63,8 @@ class MyLearningScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       // AppBar với tiêu đề tiếng Việt
-      appBar: AppBar(
-        title: const Text("Khóa học của tôi"),
-        centerTitle: true,
-        automaticallyImplyLeading: false,
+      appBar: AppAppBar(
+        title: "Khóa học của tôi",
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
@@ -113,7 +111,7 @@ class MyLearningScreen extends StatelessWidget {
             trailing: Text(
               item.actionText,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Theme.of(context).primaryColor,
+                    color: context.primary,
                     fontWeight: FontWeight.bold,
                   ),
             ),

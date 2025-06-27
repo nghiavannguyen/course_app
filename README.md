@@ -67,3 +67,6 @@ melos format
 melos analyze
 melos test
 ```
+
+II. auto gen image, icon
+dart run build_runner build

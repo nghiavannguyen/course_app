@@ -1,3 +1,5 @@
+import 'package:core_utils/core_utils.dart';
+import 'package:course_app/common/ui/app_app_bar.dart';
 import 'package:course_app/module/course/widget/youtube_video_player.dart';
 import 'package:flutter/material.dart';
 
@@ -76,16 +78,16 @@ class _DetailCourseScreenState extends State<DetailCourseScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       // AppBar tạm thời với nút back, có thể tuỳ chỉnh theo nhu cầu
-      appBar: AppBar(
-        title: const Text("Course Detail"),
-        centerTitle: true,
+      appBar: AppAppBar(
+        title: "Course Detail",
+        automaticallyImplyLeading: true,
         actions: [
           IconButton(
             icon: const Icon(Icons.share),
             onPressed: () {
               // TODO: Share logic
             },
-          )
+          ),
         ],
       ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -107,7 +109,7 @@ class _DetailCourseScreenState extends State<DetailCourseScreen>
                 labelColor: Theme.of(context).textTheme.bodyLarge?.color,
                 unselectedLabelColor:
                     Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.6),
-                indicatorColor: Theme.of(context).primaryColor,
+                indicatorColor: context.primary,
                 tabs: const [
                   Tab(text: "Lectures"),
                   Tab(text: "Downloads"),
@@ -152,9 +154,9 @@ class _DetailCourseScreenState extends State<DetailCourseScreen>
       // Section title
       title: Text(
         section.title,
-        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
+        style: context.bodyLarge?.copyWith(
+          fontWeight: FontWeight.bold,
+        ),
       ),
       // Danh sách bài giảng
       children: section.lectures.map((lecture) {

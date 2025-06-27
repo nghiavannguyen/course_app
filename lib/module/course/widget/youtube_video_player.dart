@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class YoutubeVideoPlayer extends StatefulWidget {
@@ -24,7 +25,7 @@ class _YoutubeVideoPlayerState extends State<YoutubeVideoPlayer> {
     _controller = YoutubePlayerController(
       initialVideoId: _videoId,
       flags: const YoutubePlayerFlags(
-        showLiveFullscreenButton: false,
+        showLiveFullscreenButton: true,
         disableDragSeek: true,
         enableCaption: true,
         hideThumbnail: true,
@@ -34,10 +35,34 @@ class _YoutubeVideoPlayerState extends State<YoutubeVideoPlayer> {
         forceHD: true,
       ),
     );
+
+    _controller.addListener(_fullScreenListener);
+  }
+
+  void _fullScreenListener() {
+    if (_controller.value.isFullScreen) {
+      SystemChrome.setPreferredOrientations([
+        DeviceOrientation.landscapeLeft,
+        DeviceOrientation.landscapeRight,
+      ]);
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    } else {
+      SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ]);
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    }
   }
 
   @override
   void dispose() {
+    _controller.removeListener(_fullScreenListener);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     _controller.dispose(); // Giải phóng bộ nhớ
     super.dispose();
   }
