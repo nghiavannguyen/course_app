@@ -18,7 +18,7 @@ class SuggestionSearchScreen extends GetView<SuggestionSearchController> {
         title: TextField(
           decoration: InputDecoration(hintText: 'Tìm khóa học...'),
           textInputAction: TextInputAction.search,
-          onChanged: controller.fetchSuggestions,
+          // onChanged: controller.fetchSuggestions,
         ),
       ),
       body: Obx(() {

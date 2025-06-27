@@ -23,9 +23,7 @@ class LoginScreen extends GetView<LoginController> {
             children: [
               const SizedBox(height: 16),
               AppButton(
-                onPressed: () {
-                  
-                },
+                onPressed: () {},
                 padding: EdgeInsets.symmetric(vertical: 16),
                 isFullWidth: true,
                 state: AppButtonState.loading,
@@ -49,25 +47,20 @@ class LoginScreen extends GetView<LoginController> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          _buildIcon(
-                              Icons.web, BorderRadius.circular(8), theme),
+                          _buildIcon(Icons.web, BorderRadius.circular(8), theme),
                           const SizedBox(width: 48),
-                          _buildIcon(Icons.email_outlined,
-                              BorderRadius.circular(8), theme),
+                          _buildIcon(Icons.email_outlined, BorderRadius.circular(8), theme),
                         ],
                       ),
                       const SizedBox(height: 24),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          _buildIcon(
-                              Icons.code, BorderRadius.circular(50), theme),
+                          _buildIcon(Icons.code, BorderRadius.circular(50), theme),
                           const SizedBox(width: 48),
-                          _buildIcon(Icons.camera_alt_outlined,
-                              BorderRadius.zero, theme),
+                          _buildIcon(Icons.camera_alt_outlined, BorderRadius.zero, theme),
                           const SizedBox(width: 48),
-                          _buildIcon(
-                              Icons.language, BorderRadius.circular(50), theme),
+                          _buildIcon(Icons.language, BorderRadius.circular(50), theme),
                         ],
                       ),
                     ],
@@ -120,25 +113,6 @@ class LoginScreen extends GetView<LoginController> {
                       final result = await controller.login(
                         controller.emailController.text.trim(),
                         controller.passwordController.text.trim(),
-                      );
-                      result.fold(
-                        (error) {
-                          // Handle error
-                          Logger().d("Error: $error");
-                          Get.showSnackbar(
-                            GetSnackBar(
-                              title: 'Thông báo',
-                              message: error,
-                              duration: const Duration(seconds: 2),
-                              backgroundColor: Colors.red,
-                            ),
-                          );
-                        },
-                        (success) {
-                          if (success) {
-                            Get.offAllNamed(Routes.root);
-                          }
-                        },
                       );
                     },
                     style: ElevatedButton.styleFrom(

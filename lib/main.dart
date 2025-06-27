@@ -4,7 +4,6 @@ import 'package:course_app/navigation/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
 import 'core/config/app_theme.dart';
 import 'module/theme/controller/theme_controller.dart';
 
@@ -37,7 +36,6 @@ class MyApp extends StatelessWidget {
         child: GetMaterialApp(
           enableLog: true,
           getPages: AppPage.pages,
-
           useInheritedMediaQuery: true,
           defaultTransition: Transition.cupertino,
           debugShowCheckedModeBanner: false,
@@ -45,7 +43,6 @@ class MyApp extends StatelessWidget {
           // supportedLocales: context.supportedLocales,
           // locale: context.locale,
           title: 'COURSE APP',
-
           theme: AppThemes.lightTheme,
           darkTheme: AppThemes.darkTheme,
           themeMode: themeController.theme,

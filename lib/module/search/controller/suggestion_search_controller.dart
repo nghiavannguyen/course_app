@@ -27,28 +27,28 @@ class SuggestionSearchController extends GetxController {
     super.onClose();
   }
 
-  /// Gọi API gợi ý, debounce 300ms
-  void fetchSuggestions(String query) {
-    _debounce?.cancel();
-    _debounce = Timer(Duration(milliseconds: 300), () async {
-      final q = query.trim();
-      if (q.isEmpty) {
-        suggestions.clear();
-        error.value = null;
-        return;
-      }
-      isLoading.value = true;
-      error.value = null;
+  // /// Gọi API gợi ý, debounce 300ms
+  // void fetchSuggestions(String query) {
+  //   _debounce?.cancel();
+  //   _debounce = Timer(Duration(milliseconds: 300), () async {
+  //     final q = query.trim();
+  //     if (q.isEmpty) {
+  //       suggestions.clear();
+  //       error.value = null;
+  //       return;
+  //     }
+  //     isLoading.value = true;
+  //     error.value = null;
 
-      final result = await _service.searchCourses(q, cancelToken: _cancelToken);
-      isLoading.value = false;
+  //     final result = await _service.searchCourses(q, cancelToken: _cancelToken);
+  //     isLoading.value = false;
 
-      result.fold(
-        (e) => error.value = e,
-        (list) {
-          suggestions.assignAll(list);
-        },
-      );
-    });
-  }
+  //     result.fold(
+  //       (e) => error.value = e,
+  //       (list) {
+  //         suggestions.assignAll(list);
+  //       },
+  //     );
+  //   });
+  // }
 }

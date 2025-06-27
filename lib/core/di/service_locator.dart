@@ -1,6 +1,5 @@
-import 'package:course_app/core/storage/app_hive.dart';
+import 'package:core_network/core_network.dart';
 import 'package:get_it/get_it.dart';
-import '../network/dio_client.dart';
 
 final sl = GetIt.instance;
 
