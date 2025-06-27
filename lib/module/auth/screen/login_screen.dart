@@ -1,5 +1,5 @@
-import 'package:core_ui/core_ui.dart';
 import 'package:core_theme/core_theme.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:course_app/module/auth/controller/login_controller.dart';
 import 'package:course_app/navigation/routes.dart';
 import 'package:flutter/material.dart';
@@ -31,25 +31,22 @@ class LoginScreen extends GetView<LoginController> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          _buildIcon(Icons.web,
-                              BorderRadius.circular(AppDimens.radius8), theme),
+                          _buildIcon(Icons.web, BorderRadius.circular(AppDimens.radius8), theme),
                           const SizedBox(width: AppDimens.spacing12),
-                          _buildIcon(Icons.email_outlined,
-                              BorderRadius.circular(AppDimens.radius8), theme),
+                          _buildIcon(Icons.email_outlined, BorderRadius.circular(AppDimens.radius8),
+                              theme),
                         ],
                       ),
                       const SizedBox(height: AppDimens.spacing6),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          _buildIcon(Icons.code,
-                              BorderRadius.circular(AppDimens.radius48), theme),
+                          _buildIcon(Icons.code, BorderRadius.circular(AppDimens.radius48), theme),
                           const SizedBox(width: AppDimens.spacing12),
-                          _buildIcon(Icons.camera_alt_outlined,
-                              BorderRadius.zero, theme),
+                          _buildIcon(Icons.camera_alt_outlined, BorderRadius.zero, theme),
                           const SizedBox(width: AppDimens.spacing12),
-                          _buildIcon(Icons.language,
-                              BorderRadius.circular(AppDimens.radius48), theme),
+                          _buildIcon(
+                              Icons.language, BorderRadius.circular(AppDimens.radius48), theme),
                         ],
                       ),
                     ],
@@ -80,9 +77,7 @@ class LoginScreen extends GetView<LoginController> {
                   obscureText: controller.isPasswordHidden.value,
                   suffixIcon: IconButton(
                     icon: Icon(
-                      controller.isPasswordHidden.value
-                          ? Icons.visibility_off
-                          : Icons.visibility,
+                      controller.isPasswordHidden.value ? Icons.visibility_off : Icons.visibility,
                     ),
                     onPressed: () {
                       controller.isPasswordHidden.toggle();
@@ -113,9 +108,8 @@ class LoginScreen extends GetView<LoginController> {
 
                   // Liên kết trạng thái của button với biến isLoading trong controller
 
-                  state: controller.isLoading.value
-                      ? AppButtonState.loading
-                      : AppButtonState.normal,
+                  state:
+                      controller.isLoading.value ? AppButtonState.loading : AppButtonState.normal,
 
                   // Sử dụng kiểu primary cho hành động chính
 
@@ -153,9 +147,7 @@ class LoginScreen extends GetView<LoginController> {
                           'assets/icons/apple-icon.png',
                           () {},
                           theme,
-                          color: theme.brightness == Brightness.dark
-                              ? Colors.white
-                              : Colors.black,
+                          color: theme.brightness == Brightness.dark ? Colors.white : Colors.black,
                         ),
                       ],
                     ),
@@ -266,19 +258,19 @@ class LoginScreen extends GetView<LoginController> {
       controller.passwordController.text,
     );
 
-    result.fold(
-      (error) {
-        Get.snackbar(
-          'Đăng nhập thất bại',
-          error,
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-        );
-      },
-      (success) {
-        Get.offAllNamed(Routes.root);
-      },
-    );
+    // result.fold(
+    //   (error) {
+    //     Get.snackbar(
+    //       'Đăng nhập thất bại',
+    //       error,
+    //       snackPosition: SnackPosition.BOTTOM,
+    //       backgroundColor: Colors.red,
+    //       colorText: Colors.white,
+    //     );
+    //   },
+    //   (success) {
+    //     Get.offAllNamed(Routes.root);
+    //   },
+    // );
   }
 }

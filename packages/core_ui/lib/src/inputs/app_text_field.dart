@@ -330,6 +330,10 @@ class AppTextField extends StatelessWidget {
         minWidth: 40,
         minHeight: 40,
       ),
+      prefixIconConstraints: const BoxConstraints(
+        minWidth: 40,
+        minHeight: 40,
+      ),
     );
 
     return decoration?.copyWith(
