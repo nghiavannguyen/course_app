@@ -1,5 +1,7 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:core_theme/core_theme.dart';
 
 import '../../../../core/navigation/routes.dart';
 import '../../model/wish_list_model.dart';
@@ -18,14 +20,14 @@ class CourseListItem extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
-            child: Image.network(
-              course.thumbnail,
-              width: 100,
+            child: AppImage(
+              imageUrl: course.thumbnail,
+              width: 120,
               height: 80,
               fit: BoxFit.cover,
             ),
           ),
-          const SizedBox(width: 12),
+          SizedBox(width: AppDimens.spacing3),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,28 +38,29 @@ class CourseListItem extends StatelessWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: AppDimens.spacing1),
                 Text(
                   course.instructor,
                   style: theme.textTheme.bodySmall,
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: AppDimens.spacing1),
                 Row(
                   children: [
-                    const Icon(Icons.star, color: Colors.orange, size: 14),
-                    const SizedBox(width: 4),
+                    Icon(Icons.star,
+                        color: Colors.orange, size: AppDimens.icon16),
+                    SizedBox(width: AppDimens.spacing1),
                     Text(
                       '${course.rating}',
                       style: theme.textTheme.bodySmall,
                     ),
-                    const SizedBox(width: 4),
+                    SizedBox(width: AppDimens.spacing1),
                     Text(
                       '(${course.reviews})',
                       style: theme.textTheme.bodySmall,
                     ),
                   ],
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: AppDimens.spacing1),
                 Text(
                   course.price,
                   style: theme.textTheme.titleMedium

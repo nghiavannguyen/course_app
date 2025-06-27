@@ -161,7 +161,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 24),
+              SizedBox(height: AppDimens.spacing4),
 
               // ===== PHẦN 4: Logo công ty & CTA =====
               Container(
@@ -198,7 +198,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 16),
+              SizedBox(height: AppDimens.spacing4),
             ],
           ),
         ),

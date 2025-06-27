@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:core_ui/core_ui.dart';
 
 class CategoryChip extends StatelessWidget {
   final String label;
@@ -16,21 +17,22 @@ class CategoryChip extends StatelessWidget {
   Widget build(BuildContext context) {
     // Chọn màu nền cho chip dựa trên light/dark
     final bgColor = brightness == Brightness.dark ? Colors.black : Colors.white;
+    final textColor =
+        brightness == Brightness.dark ? Colors.white : Colors.black;
 
-    return Chip(
-      visualDensity: VisualDensity.compact,
-      shape: RoundedRectangleBorder(
-        side: BorderSide(
-          color: Colors.white,
-          width: 1,
-        ),
-        borderRadius: BorderRadius.circular(24),
-      ),
-      label: Text(label,
-          style: textTheme.bodyMedium?.copyWith(
-              color:
-                  Brightness.dark == brightness ? Colors.white : Colors.black)),
+    return AppButton(
+      onPressed: () {}, // hoặc truyền callback nếu cần
+      type: AppButtonType.outline,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      borderColor: Theme.of(context).dividerColor,
+      isFullWidth: false,
+      borderRadius: BorderRadius.circular(24),
       backgroundColor: bgColor,
+      foregroundColor: textColor,
+      child: Text(
+        label,
+        style: textTheme.bodyMedium?.copyWith(color: textColor),
+      ),
     );
   }
 }

@@ -2,6 +2,7 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:core_theme/core_theme.dart';
 
 import '../controller/wish_list_detail_controller.dart';
 import 'widget/build_star_widget.dart';
@@ -35,11 +36,12 @@ class WishListDetailScreen extends GetView<WishListDetailController> {
         body: CustomScrollView(
           slivers: [
             SliverAppBar(
+              scrolledUnderElevation: 0,
               pinned: true,
               expandedHeight: 200,
               flexibleSpace: FlexibleSpaceBar(
-                background: Image.network(
-                  wishListDetailcontroller.thumbnail,
+                background: AppImage(
+                  imageUrl: wishListDetailcontroller.thumbnail,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -61,41 +63,48 @@ class WishListDetailScreen extends GetView<WishListDetailController> {
                   children: [
                     Text(wishListDetailcontroller.title,
                         style: theme.textTheme.headlineSmall),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: AppDimens.spacing1),
                     Text(wishListDetailcontroller.subtitle,
                         style: theme.textTheme.bodyMedium),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: AppDimens.spacing4),
                     Row(children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 4),
-                        decoration: BoxDecoration(
-                          color: wishListDetailcontroller.tagColor,
-                          borderRadius: BorderRadius.circular(4),
-                        ),
+                      AppButton(
+                        onPressed: null,
+                        type: AppButtonType.secondary,
+                        isFullWidth: false,
+                        borderRadius: BorderRadius.circular(AppDimens.radius4),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: AppDimens.spacing2,
+                            vertical: AppDimens.spacing1),
+                        backgroundColor: wishListDetailcontroller.tagColor,
                         child: Text(wishListDetailcontroller.tag,
                             style: theme.textTheme.bodySmall
                                 ?.copyWith(color: Colors.white)),
                       ),
                       const Spacer(),
                       Text(wishListDetailcontroller.price,
-                          style: theme.textTheme.headlineSmall
-                              ?.copyWith(color: theme.primaryColor)),
+                          style: theme.textTheme.headlineSmall?.copyWith(
+                              color: theme.textTheme.bodyMedium?.color)),
                     ]),
-                    const SizedBox(height: 16),
-                    ElevatedButton(
+                    const SizedBox(height: AppDimens.spacing4),
+                    AppButton(
                       onPressed: () {},
-                      style: theme.elevatedButtonTheme.style?.copyWith(),
+                      type: AppButtonType.primary,
+                      isFullWidth: true,
+                      padding:
+                          EdgeInsets.symmetric(vertical: AppDimens.spacing3),
                       child: const Text('Mua ngay'),
                     ),
-                    const SizedBox(height: 16),
-                    OutlinedButton(
+                    const SizedBox(height: AppDimens.spacing4),
+                    AppButton(
                       onPressed: () {},
-                      style: OutlinedButton.styleFrom(
-                          minimumSize: const Size.fromHeight(48)),
+                      type: AppButtonType.outline,
+                      isFullWidth: true,
+                      padding:
+                          EdgeInsets.symmetric(vertical: AppDimens.spacing3),
                       child: const Text('Thêm vào danh sách mong ước'),
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: AppDimens.spacing4),
 
                     // AppCupertinoPicker(
                     //   initialItem: 6,
@@ -106,14 +115,15 @@ class WishListDetailScreen extends GetView<WishListDetailController> {
                     Text('Những gì bạn sẽ học',
                         style: theme.textTheme.headlineSmall),
                     ...wishListDetailcontroller.whatYouLearn.map((s) => Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 4),
+                          padding: EdgeInsets.symmetric(
+                              vertical: AppDimens.spacing1),
                           child: Row(children: [
                             Icon(Icons.check),
-                            const SizedBox(width: 8),
+                            SizedBox(width: AppDimens.spacing2),
                             Expanded(child: Text(s))
                           ]),
                         )),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: AppDimens.spacing4),
                     Text('Chương trình giảng dạy',
                         style: theme.textTheme.headlineSmall),
                     Text(
@@ -123,12 +133,12 @@ class WishListDetailScreen extends GetView<WishListDetailController> {
                               title: Text(sec),
                               trailing: const Icon(Icons.add),
                             )),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: AppDimens.spacing4),
                     Text('Khóa học này bao gồm',
                         style: theme.textTheme.headlineSmall),
                     Wrap(
-                      spacing: 16,
-                      runSpacing: 8,
+                      spacing: AppDimens.spacing4,
+                      runSpacing: AppDimens.spacing2,
                       children: [
                         BuildStarWidget(
                             theme: theme,
@@ -152,10 +162,10 @@ class WishListDetailScreen extends GetView<WishListDetailController> {
                                 '${wishListDetailcontroller.totalResources} file hỗ trợ'),
                       ],
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: AppDimens.spacing4),
                     Text('Mô tả', style: theme.textTheme.headlineSmall),
                     Text(wishListDetailcontroller.description),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: AppDimens.spacing4),
                     Text('Học viên cũng xem',
                         style: theme.textTheme.headlineSmall),
                     ...wishListDetailcontroller.suggestions.map((s) => ListTile(
@@ -164,7 +174,7 @@ class WishListDetailScreen extends GetView<WishListDetailController> {
                           trailing: Text(s.price),
                           onTap: () {},
                         )),
-                    const SizedBox(height: 24),
+                    const SizedBox(height: AppDimens.spacing6),
                   ],
                 ),
               ),

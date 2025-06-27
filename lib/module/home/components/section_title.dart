@@ -17,9 +17,9 @@ class SectionTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-          horizontal: AppDimens.spacing6, vertical: AppDimens.spacing4),
+          horizontal: AppDimens.spacing4, vertical: AppDimens.spacing4),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
@@ -33,13 +33,11 @@ class SectionTitle extends StatelessWidget {
               onTap: onTap,
               child: Padding(
                 padding: const EdgeInsets.only(left: 8.0),
-                child: Text(
-                  'Xem tất cả',
-                  style: textTheme.bodySmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                ),
+                child: Text('Xem tất cả',
+                    style: textTheme.bodySmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).secondaryHeaderColor,
+                    )),
               ),
             ),
         ],
