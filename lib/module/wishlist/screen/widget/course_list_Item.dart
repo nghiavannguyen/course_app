@@ -19,7 +19,7 @@ class CourseListItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(AppDimens.radius8),
             child: AppImage(
               imageUrl: course.thumbnail,
               width: 120,

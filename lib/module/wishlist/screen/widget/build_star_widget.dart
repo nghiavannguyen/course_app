@@ -1,5 +1,5 @@
+import 'package:core_theme/core_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class BuildStarWidget extends StatelessWidget {
   const BuildStarWidget({
@@ -15,6 +15,10 @@ class BuildStarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: [Icon(icon), const SizedBox(width: 4), Text(text)]);
+    return Row(children: [
+      Icon(icon),
+      SizedBox(width: AppDimens.spacing1),
+      Text(text)
+    ]);
   }
 }

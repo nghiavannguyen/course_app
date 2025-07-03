@@ -75,7 +75,7 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(vertical: 16),
+          padding: const EdgeInsets.symmetric(vertical: AppDimens.spacing16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -93,9 +93,12 @@ class HomeScreen extends StatelessWidget {
                     final course = shortAndSweetCourses[index];
                     return Padding(
                       padding: EdgeInsets.only(
-                        left: index == 0 ? 16 : 8,
-                        right:
-                            index == shortAndSweetCourses.length - 1 ? 16 : 8,
+                        left: index == 0
+                            ? AppDimens.spacing16
+                            : AppDimens.spacing8,
+                        right: index == shortAndSweetCourses.length - 1
+                            ? AppDimens.spacing16
+                            : AppDimens.spacing8,
                       ),
                       child: GestureDetector(
                         onTap: () {
@@ -125,8 +128,12 @@ class HomeScreen extends StatelessWidget {
                     final course = learnersAreViewing[index];
                     return Padding(
                       padding: EdgeInsets.only(
-                        left: index == 0 ? 16 : 8,
-                        right: index == learnersAreViewing.length - 1 ? 16 : 8,
+                        left: index == 0
+                            ? AppDimens.spacing16
+                            : AppDimens.spacing8,
+                        right: index == learnersAreViewing.length - 1
+                            ? AppDimens.spacing16
+                            : AppDimens.spacing8,
                       ),
                       child: CourseCard(
                         course: course,
@@ -149,8 +156,8 @@ class HomeScreen extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: AppDimens.spacing6),
                 child: Wrap(
-                  spacing: 8,
-                  runSpacing: 4,
+                  spacing: AppDimens.spacing8,
+                  runSpacing: AppDimens.spacing4,
                   children: categories
                       .map((cat) => CategoryChip(
                             label: cat,
@@ -167,7 +174,7 @@ class HomeScreen extends StatelessWidget {
               Container(
                 color: Theme.of(context).scaffoldBackgroundColor,
                 width: double.infinity,
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(AppDimens.spacing16),
                 child: Column(
                   children: [
                     Text(
@@ -176,7 +183,7 @@ class HomeScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: AppDimens.spacing16),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: const [
@@ -186,7 +193,7 @@ class HomeScreen extends StatelessWidget {
                         PlaceholderLogo(),
                       ],
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: AppDimens.spacing16),
                     Text(
                       "Dùng thử Abu Education cho Doanh nghiệp",
                       style: textTheme.bodySmall?.copyWith(
@@ -216,8 +223,8 @@ class PlaceholderLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 50,
-      height: 50,
+      width: AppDimens.appBarHeightSmall,
+      height: AppDimens.appBarHeightSmall,
       color: Colors.white24,
       child: Center(
         child: Text(

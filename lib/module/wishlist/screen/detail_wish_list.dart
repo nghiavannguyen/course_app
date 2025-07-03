@@ -20,7 +20,7 @@ class WishListDetailScreen extends GetView<WishListDetailController> {
           appBar: AppBar(
             title: Text('Loading...'),
           ),
-          body: const Center(child: CircularProgressIndicator()),
+          body: Center(child: AppLoading.base()),
         );
       }
 
@@ -57,7 +57,7 @@ class WishListDetailScreen extends GetView<WishListDetailController> {
             ),
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(AppDimens.spacing4),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

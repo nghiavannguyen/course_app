@@ -17,7 +17,7 @@ class SectionTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-          horizontal: AppDimens.spacing4, vertical: AppDimens.spacing4),
+          horizontal: AppDimens.spacing4, vertical: AppDimens.spacing6),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -32,7 +32,7 @@ class SectionTitle extends StatelessWidget {
             GestureDetector(
               onTap: onTap,
               child: Padding(
-                padding: const EdgeInsets.only(left: 8.0),
+                padding: const EdgeInsets.only(left: AppDimens.spacing2),
                 child: Text('Xem tất cả',
                     style: textTheme.bodySmall?.copyWith(
                       fontWeight: FontWeight.bold,

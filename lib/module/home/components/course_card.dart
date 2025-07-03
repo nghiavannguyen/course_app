@@ -102,7 +102,7 @@ class CourseCard extends StatelessWidget {
               onPressed: () {},
               type: AppButtonType.secondary,
               isFullWidth: false,
-              borderRadius: BorderRadius.circular(4),
+              borderRadius: BorderRadius.circular(AppDimens.radius4),
               padding: const EdgeInsets.symmetric(
                   horizontal: AppDimens.spacing2, vertical: AppDimens.spacing1),
               backgroundColor: Colors.greenAccent,
