@@ -35,7 +35,10 @@ class ButtonWidget extends StatelessWidget {
         ),
         child: Text(
           text ?? '',
-          style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
+          style: Theme.of(context)
+              .textTheme
+              .titleSmall
+              ?.copyWith(fontWeight: FontWeight.bold),
         ),
       ),
     );

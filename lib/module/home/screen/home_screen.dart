@@ -75,7 +75,7 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(vertical: AppDimens.spacing16),
+          padding: const EdgeInsets.symmetric(vertical: AppDimens.spacing4),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -94,11 +94,11 @@ class HomeScreen extends StatelessWidget {
                     return Padding(
                       padding: EdgeInsets.only(
                         left: index == 0
-                            ? AppDimens.spacing16
-                            : AppDimens.spacing8,
+                            ? AppDimens.spacing4
+                            : AppDimens.spacing2,
                         right: index == shortAndSweetCourses.length - 1
-                            ? AppDimens.spacing16
-                            : AppDimens.spacing8,
+                            ? AppDimens.spacing4
+                            : AppDimens.spacing2,
                       ),
                       child: GestureDetector(
                         onTap: () {
@@ -129,11 +129,11 @@ class HomeScreen extends StatelessWidget {
                     return Padding(
                       padding: EdgeInsets.only(
                         left: index == 0
-                            ? AppDimens.spacing16
-                            : AppDimens.spacing8,
+                            ? AppDimens.spacing4
+                            : AppDimens.spacing2,
                         right: index == learnersAreViewing.length - 1
-                            ? AppDimens.spacing16
-                            : AppDimens.spacing8,
+                            ? AppDimens.spacing4
+                            : AppDimens.spacing2,
                       ),
                       child: CourseCard(
                         course: course,
@@ -154,10 +154,10 @@ class HomeScreen extends StatelessWidget {
               ),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: AppDimens.spacing6),
+                    const EdgeInsets.symmetric(horizontal: AppDimens.spacing4),
                 child: Wrap(
-                  spacing: AppDimens.spacing8,
-                  runSpacing: AppDimens.spacing4,
+                  spacing: AppDimens.spacing2,
+                  runSpacing: AppDimens.spacing1,
                   children: categories
                       .map((cat) => CategoryChip(
                             label: cat,
@@ -174,7 +174,7 @@ class HomeScreen extends StatelessWidget {
               Container(
                 color: Theme.of(context).scaffoldBackgroundColor,
                 width: double.infinity,
-                padding: const EdgeInsets.all(AppDimens.spacing16),
+                padding: const EdgeInsets.all(AppDimens.spacing4),
                 child: Column(
                   children: [
                     Text(
@@ -183,7 +183,7 @@ class HomeScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: AppDimens.spacing16),
+                    SizedBox(height: AppDimens.spacing4),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: const [
@@ -193,7 +193,7 @@ class HomeScreen extends StatelessWidget {
                         PlaceholderLogo(),
                       ],
                     ),
-                    SizedBox(height: AppDimens.spacing16),
+                    SizedBox(height: AppDimens.spacing4),
                     Text(
                       "Dùng thử Abu Education cho Doanh nghiệp",
                       style: textTheme.bodySmall?.copyWith(
