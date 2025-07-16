@@ -67,7 +67,8 @@ class ToastWidget extends StatefulWidget {
   _ToastWidgetState createState() => _ToastWidgetState();
 }
 
-class _ToastWidgetState extends State<ToastWidget> with SingleTickerProviderStateMixin {
+class _ToastWidgetState extends State<ToastWidget>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 
@@ -79,7 +80,8 @@ class _ToastWidgetState extends State<ToastWidget> with SingleTickerProviderStat
       duration: const Duration(milliseconds: 350),
     );
 
-    _animation = CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic);
+    _animation =
+        CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic);
 
     _controller.forward();
 

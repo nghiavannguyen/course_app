@@ -2,6 +2,8 @@
 import 'package:course_app/module/wishlist/screen/widget/course_list_Item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:core_ui/core_ui.dart';
+import 'package:core_theme/core_theme.dart';
 
 import '../controller/wish_list_controller.dart';
 
@@ -17,23 +19,18 @@ class WishListScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
       appBar: AppBar(
-        title: Text('Wish List'),
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
+          title: Text('Wish List'),
+          centerTitle: true,
+          scrolledUnderElevation: 0),
       body: Obx(() {
         if (controller.isLoading.value) {
-          return const Center(child: CircularProgressIndicator());
+          return AppLoading.base();
         }
         return ListView.separated(
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(AppDimens.spacing4),
           itemCount: courses.length,
-          separatorBuilder: (context, index) => const SizedBox(height: 24),
+          separatorBuilder: (context, index) =>
+              SizedBox(height: AppDimens.spacing6),
           itemBuilder: (context, index) {
             final course = courses[index];
             return CourseListItem(course: course);

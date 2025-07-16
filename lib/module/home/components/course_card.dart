@@ -1,5 +1,6 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:core_theme/core_theme.dart';
 
 import '../screen/home_screen.dart';
 
@@ -28,7 +29,7 @@ class CourseCard extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: AppDimens.spacing2),
 
           // Tên khóa học
           Text(
@@ -39,7 +40,7 @@ class CourseCard extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 4),
+          SizedBox(height: AppDimens.spacing1),
 
           // Tác giả
           Text(
@@ -48,7 +49,7 @@ class CourseCard extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: textTheme.bodySmall,
           ),
-          const SizedBox(height: 4),
+          SizedBox(height: AppDimens.spacing1),
 
           // Rating & ratingCount
           Row(
@@ -61,16 +62,17 @@ class CourseCard extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(width: 4),
-              const Icon(Icons.star, color: Colors.amber, size: 12),
-              const SizedBox(width: 4),
+              SizedBox(width: AppDimens.spacing1),
+              const Icon(Icons.star,
+                  color: Colors.amber, size: AppDimens.icon20),
+              SizedBox(width: AppDimens.spacing1),
               Text(
                 "(${course.ratingCount})",
                 style: textTheme.bodySmall,
               ),
             ],
           ),
-          const SizedBox(height: 4),
+          SizedBox(height: AppDimens.spacing1),
 
           // Giá & Giá gạch
           Row(
@@ -83,7 +85,7 @@ class CourseCard extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(width: 6),
+              SizedBox(width: AppDimens.spacing2),
               Text(
                 course.oldPrice,
                 style: textTheme.bodyMedium?.copyWith(
@@ -92,21 +94,22 @@ class CourseCard extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 4),
+          SizedBox(height: AppDimens.spacing1),
 
           // Bestseller
           if (course.isBestseller)
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-              decoration: BoxDecoration(
-                color: Colors.greenAccent,
-                borderRadius: BorderRadius.circular(4),
-              ),
+            AppButton(
+              onPressed: () {},
+              type: AppButtonType.secondary,
+              isFullWidth: false,
+              borderRadius: BorderRadius.circular(AppDimens.radius4),
+              padding: const EdgeInsets.symmetric(
+                  horizontal: AppDimens.spacing2, vertical: AppDimens.spacing1),
+              backgroundColor: Colors.greenAccent,
               child: Text(
                 "Bestseller",
                 style: textTheme.bodySmall?.copyWith(
-                  // Để nổi bật, đặt text đen trên nền xanh
-                  color: Colors.black,
+                  color: Theme.of(context).colorScheme.onSecondary,
                   fontWeight: FontWeight.bold,
                 ),
               ),

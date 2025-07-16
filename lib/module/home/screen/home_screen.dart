@@ -75,7 +75,7 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(vertical: 16),
+          padding: const EdgeInsets.symmetric(vertical: AppDimens.spacing4),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -93,9 +93,12 @@ class HomeScreen extends StatelessWidget {
                     final course = shortAndSweetCourses[index];
                     return Padding(
                       padding: EdgeInsets.only(
-                        left: index == 0 ? 16 : 8,
-                        right:
-                            index == shortAndSweetCourses.length - 1 ? 16 : 8,
+                        left: index == 0
+                            ? AppDimens.spacing4
+                            : AppDimens.spacing2,
+                        right: index == shortAndSweetCourses.length - 1
+                            ? AppDimens.spacing4
+                            : AppDimens.spacing2,
                       ),
                       child: GestureDetector(
                         onTap: () {
@@ -125,8 +128,12 @@ class HomeScreen extends StatelessWidget {
                     final course = learnersAreViewing[index];
                     return Padding(
                       padding: EdgeInsets.only(
-                        left: index == 0 ? 16 : 8,
-                        right: index == learnersAreViewing.length - 1 ? 16 : 8,
+                        left: index == 0
+                            ? AppDimens.spacing4
+                            : AppDimens.spacing2,
+                        right: index == learnersAreViewing.length - 1
+                            ? AppDimens.spacing4
+                            : AppDimens.spacing2,
                       ),
                       child: CourseCard(
                         course: course,
@@ -147,10 +154,10 @@ class HomeScreen extends StatelessWidget {
               ),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: AppDimens.spacing6),
+                    const EdgeInsets.symmetric(horizontal: AppDimens.spacing4),
                 child: Wrap(
-                  spacing: 8,
-                  runSpacing: 4,
+                  spacing: AppDimens.spacing2,
+                  runSpacing: AppDimens.spacing1,
                   children: categories
                       .map((cat) => CategoryChip(
                             label: cat,
@@ -161,13 +168,13 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 24),
+              SizedBox(height: AppDimens.spacing4),
 
               // ===== PHẦN 4: Logo công ty & CTA =====
               Container(
                 color: Theme.of(context).scaffoldBackgroundColor,
                 width: double.infinity,
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(AppDimens.spacing4),
                 child: Column(
                   children: [
                     Text(
@@ -176,7 +183,7 @@ class HomeScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: AppDimens.spacing4),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: const [
@@ -186,7 +193,7 @@ class HomeScreen extends StatelessWidget {
                         PlaceholderLogo(),
                       ],
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: AppDimens.spacing4),
                     Text(
                       "Dùng thử Abu Education cho Doanh nghiệp",
                       style: textTheme.bodySmall?.copyWith(
@@ -198,7 +205,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 16),
+              SizedBox(height: AppDimens.spacing4),
             ],
           ),
         ),
@@ -216,8 +223,8 @@ class PlaceholderLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 50,
-      height: 50,
+      width: AppDimens.appBarHeightSmall,
+      height: AppDimens.appBarHeightSmall,
       color: Colors.white24,
       child: Center(
         child: Text(

@@ -1,3 +1,5 @@
+import 'package:core_theme/core_theme.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:course_app/module/course/widget/youtube_video_player.dart';
 import 'package:course_app/module/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +11,8 @@ class CourseScreen extends StatelessWidget {
 
   // ==== DUMMY DATA (bạn có thể thay thế) ====
   final String coursePreviewUrl = "https://dummyimage.com/600x300";
-  final String courseTitle = "React - The Complete Guide 2025 (incl. Next.js, Redux)";
+  final String courseTitle =
+      "React - The Complete Guide 2025 (incl. Next.js, Redux)";
   final double courseRating = 4.6;
   final int courseRatingCount = 225000;
   final int courseStudentsCount = 940000;
@@ -23,6 +26,8 @@ class CourseScreen extends StatelessWidget {
     return Scaffold(
       // AppBar mô phỏng: nút đóng (X) bên trái, nút chia sẻ bên phải
       appBar: AppBar(
+        scrolledUnderElevation: 0.0, // 100% = 100dp, 0% = 0dp
+        title: Text(courseTitle),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
           onPressed: () {
@@ -47,29 +52,29 @@ class CourseScreen extends StatelessWidget {
             _buildPreviewSection(context),
             // ===== SECTION 2: PRICE & BUY =====
             _buildPriceSection(context),
-            const SizedBox(height: 16),
+            const SizedBox(height: AppDimens.spacing4),
             // ===== SECTION 3: WHAT YOU'LL LEARN =====
             _buildWhatYouWillLearnSection(context),
-            const SizedBox(height: 16),
+            const SizedBox(height: AppDimens.spacing4),
             // ===== SECTION 4: CURRICULUM =====
             _buildCurriculumSection(context),
-            const SizedBox(height: 16),
+            const SizedBox(height: AppDimens.spacing4),
             // ===== SECTION 5: COURSE INCLUDES =====
             _buildCourseIncludesSection(context),
             const SizedBox(height: 16),
             // ===== SECTION 6: REQUIREMENTS =====
             _buildRequirementsSection(context),
-            const SizedBox(height: 16),
+            const SizedBox(height: AppDimens.spacing4),
 
             // ===== SECTION 7: INSTRUCTORS =====
             _buildInstructorsSection(context),
-            const SizedBox(height: 16),
+            const SizedBox(height: AppDimens.spacing4),
 
             // ===== SECTION 8: STUDENT FEEDBACK =====
             _buildStudentFeedbackSection(context),
             // ===== SECTION 9: BUY AGAIN AT BOTTOM =====
             _buildBottomBuySection(context),
-            const SizedBox(height: 16),
+            const SizedBox(height: AppDimens.spacing4),
           ],
         ),
       ),
@@ -96,8 +101,8 @@ class CourseScreen extends StatelessWidget {
                 right: 8,
                 child: Container(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 6,
+                    horizontal: AppDimens.spacing3,
+                    vertical: AppDimens.spacing1,
                   ),
                   color: Theme.of(context).canvasColor,
                   child: Text(
@@ -111,10 +116,11 @@ class CourseScreen extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: AppDimens.spacing2),
         // Tên khóa học
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(
+              horizontal: AppDimens.buttonPaddingLarge),
           child: Text(
             courseTitle,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -122,10 +128,11 @@ class CourseScreen extends StatelessWidget {
                 ),
           ),
         ),
-        const SizedBox(height: 4),
+        const SizedBox(height: AppDimens.spacing1),
         // Rating, bestseller, students
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(
+              horizontal: AppDimens.buttonPaddingLarge),
           child: Row(
             children: [
               // Điểm rating
@@ -136,9 +143,10 @@ class CourseScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
               ),
-              const SizedBox(width: 4),
-              const Icon(Icons.star, color: Colors.amber, size: 14),
-              const SizedBox(width: 4),
+              const SizedBox(width: AppDimens.spacing1),
+              const Icon(Icons.star,
+                  color: Colors.amber, size: AppDimens.icon16),
+              const SizedBox(width: AppDimens.spacing1),
               Text(
                 "(${_formatNumber(courseRatingCount)} ratings) "
                 "${_formatNumber(courseStudentsCount)} students",
@@ -147,15 +155,17 @@ class CourseScreen extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 4),
+        const SizedBox(height: AppDimens.spacing1),
         if (isBestseller)
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.symmetric(
+                horizontal: AppDimens.buttonPaddingLarge),
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              padding: const EdgeInsets.symmetric(
+                  horizontal: AppDimens.spacing2, vertical: AppDimens.spacing1),
               decoration: BoxDecoration(
                 color: Colors.greenAccent,
-                borderRadius: BorderRadius.circular(4),
+                borderRadius: BorderRadius.circular(AppDimens.radius4),
               ),
               child: Text(
                 "Bestseller",
@@ -166,7 +176,7 @@ class CourseScreen extends StatelessWidget {
               ),
             ),
           ),
-        const SizedBox(height: 8),
+        const SizedBox(height: AppDimens.spacing2),
       ],
     );
   }
@@ -176,7 +186,7 @@ class CourseScreen extends StatelessWidget {
   // =======================
   Widget _buildPriceSection(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: AppDimens.spacing4),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -190,7 +200,7 @@ class CourseScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
               ),
-              const SizedBox(width: 8),
+              const SizedBox(width: AppDimens.spacing2),
               Text(
                 courseOldPrice,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -200,7 +210,7 @@ class CourseScreen extends StatelessWidget {
             ],
           ),
           // Giảm giá
-          const SizedBox(height: 4),
+          const SizedBox(height: AppDimens.spacing1),
           Text(
             discountText,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -208,26 +218,40 @@ class CourseScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: AppDimens.spacing2),
           // Nút "Buy now"
-          ButtonWidget(
-            text: "Buy now",
+          AppButton(
+            borderRadius: BorderRadius.circular(AppDimens.radius8),
+
+            backgroundColor: Theme.of(context).colorScheme.primary,
+
             onPressed: () {},
+
+            // state:
+            //     controller.isLoading.value ? AppButtonState.loading : AppButtonState.normal,
+
+            type: AppButtonType.primary,
+
+            isFullWidth: true,
+
+            child: const Text('Buy now'),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: AppDimens.spacing2),
           // Nút "Add to wishlist"
-          ButtonWidget(
-            text: "Add to wishlist",
-            backgroundColor: Colors.transparent,
-            shape: RoundedRectangleBorder(
-              side: BorderSide(
-                color: Theme.of(context).primaryColor,
-                width: 1,
-              ),
-              borderRadius: BorderRadius.circular(48),
-            ),
+          AppButton(
+            borderRadius: BorderRadius.circular(AppDimens.radius8),
+
             onPressed: () {},
-          ),
+
+            // state:
+            //     controller.isLoading.value ? AppButtonState.loading : AppButtonState.normal,
+
+            type: AppButtonType.outline,
+
+            isFullWidth: true,
+
+            child: const Text('Add to wishlist'),
+          )
         ],
       ),
     );
@@ -238,13 +262,14 @@ class CourseScreen extends StatelessWidget {
   // =======================
   Widget _buildWhatYouWillLearnSection(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding:
+          const EdgeInsets.symmetric(horizontal: AppDimens.buttonPaddingLarge),
       child: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).canvasColor,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(AppDimens.radius8),
         ),
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(AppDimens.spacing4),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -254,10 +279,10 @@ class CourseScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: AppDimens.spacing2),
             ...whatYouWillLearn.map(
               (item) => Padding(
-                padding: const EdgeInsets.only(bottom: 8),
+                padding: const EdgeInsets.only(bottom: AppDimens.spacing2),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -295,7 +320,7 @@ class CourseScreen extends StatelessWidget {
   // =======================
   Widget _buildCurriculumSection(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: AppDimens.spacing4),
       child: Container(
         // decoration: BoxDecoration(
         //     // color: Theme.of(context).canvasColor,
@@ -311,12 +336,12 @@ class CourseScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
             ),
-            const SizedBox(height: 4),
+            const SizedBox(height: AppDimens.spacing1),
             Text(
               "40 sections • 726 lectures • 71h 22m total length",
               style: Theme.of(context).textTheme.bodySmall,
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: AppDimens.spacing2),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -332,11 +357,11 @@ class CourseScreen extends StatelessWidget {
                 )
               ],
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: AppDimens.spacing2),
             ...List.generate(
               curriculum.length,
               (index) => Padding(
-                padding: const EdgeInsets.only(bottom: 6),
+                padding: const EdgeInsets.only(bottom: AppDimens.spacing2),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -363,7 +388,7 @@ class CourseScreen extends StatelessWidget {
                     SizedBox(
                       width: 8,
                     ),
-                    const Icon(Icons.play_circle_fill, size: 16),
+                    const Icon(Icons.play_circle_fill, size: AppDimens.icon16),
                   ],
                 ),
               ),
@@ -391,7 +416,7 @@ class CourseScreen extends StatelessWidget {
   // =======================
   Widget _buildCourseIncludesSection(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: AppDimens.spacing4),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -401,15 +426,16 @@ class CourseScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: AppDimens.spacing2),
           ...courseIncludes.map(
             (item) => Padding(
-              padding: const EdgeInsets.only(bottom: 6),
+              padding: const EdgeInsets.only(bottom: AppDimens.spacing2),
               child: Row(
                 children: [
                   // Mô phỏng icon
-                  const Icon(Icons.check_circle_outline, size: 18),
-                  const SizedBox(width: 8),
+                  const Icon(Icons.check_circle_outline,
+                      size: AppDimens.icon16),
+                  const SizedBox(width: AppDimens.spacing2),
                   Expanded(
                     child: Text(
                       item,
@@ -430,7 +456,7 @@ class CourseScreen extends StatelessWidget {
   // =======================
   Widget _buildRequirementsSection(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: AppDimens.spacing4),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -440,10 +466,10 @@ class CourseScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: AppDimens.spacing2),
           ...requirements.map(
             (item) => Padding(
-              padding: const EdgeInsets.only(bottom: 6),
+              padding: const EdgeInsets.only(bottom: AppDimens.spacing2),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -458,7 +484,7 @@ class CourseScreen extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: AppDimens.spacing2),
           Text(
             "This bestselling course by the author of \"React Key Concepts\" has turned more students into ...",
             style: Theme.of(context).textTheme.bodyMedium,
@@ -473,7 +499,7 @@ class CourseScreen extends StatelessWidget {
   // =======================
   Widget _buildInstructorsSection(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: AppDimens.spacing4),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -483,10 +509,10 @@ class CourseScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: AppDimens.spacing4),
           ...instructors.map((inst) {
             return Padding(
-              padding: const EdgeInsets.only(bottom: 24),
+              padding: const EdgeInsets.only(bottom: AppDimens.spacing6),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -494,17 +520,21 @@ class CourseScreen extends StatelessWidget {
                   Row(
                     children: [
                       CircleAvatar(
-                        radius: 24,
-                        backgroundImage: NetworkImage(inst.avatarUrl), // dummy if needed
+                        radius: AppDimens.radius24,
+                        backgroundImage:
+                            NetworkImage(inst.avatarUrl), // dummy if needed
                       ),
-                      const SizedBox(width: 12),
+                      const SizedBox(width: AppDimens.spacing3),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               inst.name,
-                              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge
+                                  ?.copyWith(
                                     fontWeight: FontWeight.bold,
                                   ),
                             ),
@@ -517,22 +547,26 @@ class CourseScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: AppDimens.spacing2),
                   // Rating, reviews, students, courses
                   Text(
                     "${inst.rating} Instructor rating | ${_formatNumber(inst.reviewsCount)} Reviews | "
                     "${_formatNumber(inst.studentsCount)} Students | ${inst.coursesCount} Courses",
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: Theme.of(context).textTheme.bodySmall?.color?.withOpacity(0.7),
+                          color: Theme.of(context)
+                              .textTheme
+                              .bodySmall
+                              ?.color
+                              ?.withOpacity(0.7),
                         ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: AppDimens.spacing2),
                   // Mô tả
                   Text(
                     inst.description,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: AppDimens.spacing2),
                   // "Show more", "View profile"
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -543,13 +577,14 @@ class CourseScreen extends StatelessWidget {
                         },
                         child: Text(
                           "Show more",
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                color: Theme.of(context).primaryColor,
-                                fontWeight: FontWeight.bold,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: Theme.of(context).primaryColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                         ),
                       ),
-                      const SizedBox(width: 16),
+                      const SizedBox(width: AppDimens.spacing4),
                       ElevatedButton(
                         onPressed: () {
                           // TODO: view profile
@@ -559,9 +594,10 @@ class CourseScreen extends StatelessWidget {
                         ),
                         child: Text(
                           "View profile",
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                         ),
                       ),
                     ],
@@ -580,13 +616,13 @@ class CourseScreen extends StatelessWidget {
   // =======================
   Widget _buildStudentFeedbackSection(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: AppDimens.spacing4),
       child: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).canvasColor,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(AppDimens.radius12),
         ),
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(AppDimens.spacing4),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -596,7 +632,7 @@ class CourseScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: AppDimens.spacing2),
             // Tổng rating
             Row(
               children: [
@@ -606,21 +642,21 @@ class CourseScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                 ),
-                const SizedBox(width: 4),
+                const SizedBox(width: AppDimens.spacing1),
                 Text(
                   "course rating",
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ],
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: AppDimens.spacing2),
             // Biểu đồ rating
             ...ratingDistribution.entries.map((entry) {
               final star = entry.key;
               final percent = entry.value;
               return _buildRatingBar(context, star, percent);
             }),
-            const SizedBox(height: 16),
+            const SizedBox(height: AppDimens.spacing4),
             // Danh sách review
             ...studentReviews.map(
               (review) => _buildStudentReview(context, review),
@@ -634,36 +670,36 @@ class CourseScreen extends StatelessWidget {
   // Widget hiển thị 1 thanh rating
   Widget _buildRatingBar(BuildContext context, int star, int percent) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 6),
+      padding: const EdgeInsets.only(bottom: AppDimens.spacing2),
       child: Row(
         children: [
           Text("$star", style: Theme.of(context).textTheme.bodyMedium),
-          const Icon(Icons.star, color: Colors.amber, size: 14),
-          const SizedBox(width: 4),
+          const Icon(Icons.star, color: Colors.amber, size: AppDimens.icon16),
+          const SizedBox(width: AppDimens.spacing1),
           Expanded(
             child: Stack(
               children: [
                 Container(
-                  height: 8,
+                  height: AppDimens.spacing2,
                   decoration: BoxDecoration(
                     color: Theme.of(context).dividerColor,
-                    borderRadius: BorderRadius.circular(4),
+                    borderRadius: BorderRadius.circular(AppDimens.radius4),
                   ),
                 ),
                 Container(
-                  height: 8,
+                  height: AppDimens.spacing2,
                   width: MediaQuery.of(context).size.width *
                       (percent / 100) *
                       0.7, // 0.7 để tránh tràn
                   decoration: BoxDecoration(
                     color: Colors.amber,
-                    borderRadius: BorderRadius.circular(4),
+                    borderRadius: BorderRadius.circular(AppDimens.radius4),
                   ),
                 ),
               ],
             ),
           ),
-          const SizedBox(width: 8),
+          const SizedBox(width: AppDimens.spacing2),
           Text("$percent%", style: Theme.of(context).textTheme.bodySmall),
         ],
       ),
@@ -673,7 +709,8 @@ class CourseScreen extends StatelessWidget {
   // Widget hiển thị 1 review
   Widget _buildStudentReview(BuildContext context, StudentReview review) {
     return Padding(
-      padding: const EdgeInsets.only(top: 12),
+      padding: const EdgeInsets.only(top: AppDimens.spacing3),
+      // Tạo 1 widget chứa 1 review
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -690,24 +727,28 @@ class CourseScreen extends StatelessWidget {
               Text(
                 review.timeAgo,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Theme.of(context).textTheme.bodySmall?.color?.withOpacity(0.7),
+                      color: Theme.of(context)
+                          .textTheme
+                          .bodySmall
+                          ?.color
+                          ?.withOpacity(0.7),
                     ),
               ),
             ],
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: AppDimens.spacing1),
           // Rating
           Row(
             children: [
               for (int i = 1; i <= 5; i++)
                 Icon(
                   Icons.star,
-                  size: 14,
+                  size: AppDimens.icon12,
                   color: i <= review.rating ? Colors.amber : Colors.grey,
                 ),
             ],
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: AppDimens.spacing1),
           // Comment
           Text(
             review.comment,
@@ -724,13 +765,14 @@ class CourseScreen extends StatelessWidget {
   // =======================
   Widget _buildBottomBuySection(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      padding: const EdgeInsets.symmetric(
+          horizontal: AppDimens.spacing4, vertical: AppDimens.spacing3),
       child: Container(
         height: 120,
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(AppDimens.spacing3),
         decoration: BoxDecoration(
           color: Theme.of(context).canvasColor,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(AppDimens.radius8),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -746,7 +788,7 @@ class CourseScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: AppDimens.spacing2),
                 Text(
                   courseOldPrice,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -755,12 +797,32 @@ class CourseScreen extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: AppDimens.spacing2),
             // Nút "Buy now"
-            ButtonWidget(
-              text: "Buy now",
+            AppButton(
+              borderRadius: BorderRadius.circular(AppDimens.radius8),
+
+              backgroundColor: Theme.of(context).colorScheme.primary,
+
+              // Giữ nguyên hàm xử lý khi nhấn nút
+
               onPressed: () {},
-            ),
+
+              // state:
+              //     controller.isLoading.value ? AppButtonState.loading : AppButtonState.normal,
+
+              // Sử dụng kiểu primary cho hành động chính
+
+              type: AppButtonType.primary,
+
+              // Để button chiếm toàn bộ chiều rộng
+
+              isFullWidth: true,
+
+// Nội dung của button giờ đây chỉ cần là Text
+
+              child: const Text('Buy now'),
+            )
           ],
         ),
       ),
